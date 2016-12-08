@@ -1,31 +1,31 @@
 <CoordinateSystem> { Y-Up }
 
 <Comment> {
-  "maya2egg2015 trialworld2.mb trialworld3.egg"
+  "maya2egg2015 trialworld4.mb trialworld4.egg"
 }
 <Texture> "sky:toontown_central_tutorial_palette_4amla_1" {
-  "phase_3.5/maps/toontown_central_tutorial_palette_4amla_1.jpg"
+  "../phase/phase_3.5/maps/toontown_central_tutorial_palette_4amla_1.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "sky:skyblue2" {
-  "phase_3.5/maps/skyblue2.jpg"
+  "../phase/phase_3.5/maps/skyblue2.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "sky:middayskyB" {
-  "phase_3.5/maps/middayskyB.jpg"
+  "../phase/phase_3.5/maps/middayskyB.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> phong1SG {
-  ground.jpg
+  "../phase/ground.jpg"
   <Scalar> format { rgb }
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
@@ -33,140 +33,140 @@
   <Scalar> magfilter { linear }
 }
 <Texture> "myteepee:tt_t_ara_est_house_tepee_dots" {
-  "phase_5.5/maps/tt_t_ara_est_house_tepee_dots.jpg"
+  "../phase/phase_5.5/maps/tt_t_ara_est_house_tepee_dots.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "myteepee:estate_palette_4amla_7" {
-  "phase_5.5/maps/estate_palette_4amla_7.jpg"
+  "../phase/phase_5.5/maps/estate_palette_4amla_7.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "myteepee:estate_palette_4amla_10" {
-  "phase_5.5/maps/estate_palette_4amla_10.jpg"
+  "../phase/phase_5.5/maps/estate_palette_4amla_10.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "myteepee:estate_palette_3cmla_9" {
-  "phase_5.5/maps/estate_palette_3cmla_9.jpg"
+  "../phase/phase_5.5/maps/estate_palette_3cmla_9.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "myteepee:estate_palette_3cmla_5" {
-  "phase_5.5/maps/estate_palette_3cmla_5.jpg"
+  "../phase/phase_5.5/maps/estate_palette_3cmla_5.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "myteepee:estate_palette_1lmla_1" {
-  "phase_5.5/maps/estate_palette_1lmla_1.jpg"
+  "../phase/phase_5.5/maps/estate_palette_1lmla_1.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "myhouse:square_drop_shadow" {
-  "phase_3/maps/square_drop_shadow.jpg"
+  "../phase/phase_3/maps/square_drop_shadow.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "myhouse:phase_5_palette_4amla_2" {
-  "phase_3/maps/phase_5_palette_4amla_2.jpg"
+  "../phase/phase_3/maps/phase_5_palette_4amla_2.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "myhouse:phase_5_palette_3cmla_3" {
-  "phase_3/maps/phase_5_palette_3cmla_3.jpg"
+  "../phase/phase_3/maps/phase_5_palette_3cmla_3.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "myhouse:phase_5_palette_3cmla_2" {
-  "phase_3/maps/phase_5_palette_3cmla_2.jpg"
+  "../phase/phase_3/maps/phase_5_palette_3cmla_2.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "myhouse:phase_5_palette_3cmla_1" {
-  "phase_3/maps/phase_5_palette_3cmla_1.jpg"
+  "../phase/phase_3/maps/phase_5_palette_3cmla_1.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "myhouse:phase_5_palette_1lmla_1" {
-  "phase_3/maps/phase_5_palette_1lmla_1.jpg"
+  "../phase/phase_3/maps/phase_5_palette_1lmla_1.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "myhouse:estateHouseroof2b_tile" {
-  "phase_5/maps/estateHouseroof2b_tile.jpg"
+  "../phase/phase_5/maps/estateHouseroof2b_tile.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "myhouse:estateHouseStone1" {
-  "phase_5/maps/estateHouseStone1.jpg"
+  "../phase/phase_5/maps/estateHouseStone1.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "mycupcake:estate_palette_3cmla_9" {
-  "phase_5.5/maps/estate_palette_3cmla_9.jpg"
+  "../phase/phase_5.5/maps/estate_palette_3cmla_9.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "mycastle:tt_t_ara_est_house_castle_walltrim" {
-  "phase_5.5/maps/tt_t_ara_est_house_castle_walltrim.jpg"
+  "../phase/phase_5.5/maps/tt_t_ara_est_house_castle_walltrim.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "mycastle:tt_t_ara_est_house_castle_stone" {
-  "phase_5.5/maps/tt_t_ara_est_house_castle_stone.jpg"
+  "../phase/phase_5.5/maps/tt_t_ara_est_house_castle_stone.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "mycastle:tt_t_ara_est_house_castle_roof_tiles2" {
-  "phase_5.5/maps/tt_t_ara_est_house_castle_roof_tiles2.jpg"
+  "../phase/phase_5.5/maps/tt_t_ara_est_house_castle_roof_tiles2.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "mycastle:estate_palette_4amla_9_tref1" {
-  "phase_5.5/maps/estate_palette_4amla_9.jpg"
+  "../phase/phase_5.5/maps/estate_palette_4amla_9.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "mycastle:estate_palette_3cmla_5" {
-  "phase_5.5/maps/estate_palette_3cmla_5.jpg"
+  "../phase/phase_5.5/maps/estate_palette_3cmla_5.jpg"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
@@ -34045,6 +34045,72 @@
           }
         }
       }
+    }
+  }
+}
+<Group> first_trigger {
+  <VertexPool> first_trigger.cvs {
+    <Vertex> 0 {
+      49.6089 -9.31766e-16 17.0453 1
+    }
+    <Vertex> 1 {
+      60.9255 -9.31766e-16 17.0453 1
+    }
+    <Vertex> 2 {
+      72.2422 -9.31766e-16 17.0453 1
+    }
+    <Vertex> 3 {
+      83.5588 -9.31766e-16 17.0453 1
+    }
+    <Vertex> 4 {
+      49.6089 -3.10589e-16 6.9007 1
+    }
+    <Vertex> 5 {
+      60.9255 -3.10589e-16 6.9007 1
+    }
+    <Vertex> 6 {
+      72.2422 -3.10589e-16 6.9007 1
+    }
+    <Vertex> 7 {
+      83.5588 -3.10589e-16 6.9007 1
+    }
+    <Vertex> 8 {
+      49.6089 3.10589e-16 -3.24389 1
+    }
+    <Vertex> 9 {
+      60.9255 3.10589e-16 -3.24389 1
+    }
+    <Vertex> 10 {
+      72.2422 3.10589e-16 -3.24389 1
+    }
+    <Vertex> 11 {
+      83.5588 3.10589e-16 -3.24389 1
+    }
+    <Vertex> 12 {
+      49.6089 9.31766e-16 -13.3885 1
+    }
+    <Vertex> 13 {
+      60.9255 9.31766e-16 -13.3885 1
+    }
+    <Vertex> 14 {
+      72.2422 9.31766e-16 -13.3885 1
+    }
+    <Vertex> 15 {
+      83.5588 9.31766e-16 -13.3885 1
+    }
+  }
+  <NurbsSurface> first_trigger {
+    <Order> { 4 4 }
+    <U-Knots> {
+      0 0 0 0 1 1 1 1
+    }
+    <V-Knots> {
+      0 0 0 0 1 1 1 1
+    }
+    <RGBA> { 0.5 0.5 0.5 1 }
+    <VertexRef> {
+      0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+      <Ref> { first_trigger.cvs }
     }
   }
 }
