@@ -9,10 +9,34 @@ gameDisplay= pygame.display.set_mode((800, 600))
 
 bg=pygame.image.load('clouds_converted.jpg')
 moore=pygame.image.load("baemoore_converted.png")
+myfont = pygame.font.SysFont("Extrude", 30)
+myfonter =pygame.font.SysFont("AldotheApache",60)
+
 jump = False
 fall = False
 
+
+pygame.display.set_caption("lets play!")
+theSong=ourMusic("m83.ogg")
+theSong.musicUpload()
+theSong.musicPlay()
+gameExit = False
+clock = pygame.time.Clock()
+
+score=0
+y=str(score)
+scorething=open("m83scores.txt", "r")
+scoresentence=scorething.readline()
+b=scoresentence.strip()
+b=int(b)
+scorething.close()
+
+
 cube = pygame.image.load("cube.png")
+player=sprites(moore, 50, 544)
+
+pointob=sprites(cube, -10, 580) #the cube it will hit
+pointob.pos()
 player=sprites(moore, 50, 544)
 
 ob = sprites(cube, 2125, 580)
@@ -150,19 +174,6 @@ ob131 = sprites(cube, 2125, 580)
 ob132 = sprites(cube, 2125, 580)
 ob133 = sprites(cube, 2125, 580)
 
-
-
-
-
-pygame.display.set_caption("lets play!")
-theSong=ourMusic("m83.ogg")
-theSong.musicUpload()
-theSong.musicPlay()
-gameExit = False
-clock = pygame.time.Clock()
-
-
-
 spritesgroup=pygame.sprite.Group()
 spritesgroup.add(ob, ob1, ob2, ob3, ob4, ob5, ob6, ob7, ob8, ob9, ob10,
                  ob11, ob12, ob13, ob14, ob15, ob16, ob17, ob18, ob19, ob20,
@@ -179,7 +190,6 @@ spritesgroup.add(ob, ob1, ob2, ob3, ob4, ob5, ob6, ob7, ob8, ob9, ob10,
                  ob121, ob122, ob123, ob124, ob125, ob126, ob127, ob128, ob129, ob130,
                  ob131, ob132, ob133)
 
-score=600
 
 while not gameExit:
     clock.tick(40)
@@ -192,7 +202,7 @@ while not gameExit:
             if event.key == pygame.K_SPACE:
                 if not fall:
                     jump = True
-            if event.key == pygame.K_ESCAPE:
+            if event.key == pygame.K_RETURN:
                 gameExit= True
     if jump:
         player.rect.y -= 16
@@ -206,143 +216,14 @@ while not gameExit:
         if player.rect.y >= 544:
             ycoor = 0
             fall = False
+
     pygame.display.update()
     gameDisplay.blit(bg,[0,0])
+    #gameDisplay.fill(colors["pink"])
     time.sleep(.05)
     player.pos()
-    ob.pos()
+    spritesgroup.draw(gameDisplay)
     ob.left(7)
-    ob1.pos()
-    ob2.pos()
-    ob3.pos()
-    ob4.pos()
-    ob5.pos()
-    ob6.pos()
-    ob7.pos()
-    ob8.pos()
-    ob9.pos()
-    ob10.pos()
-    ob11.pos()
-    ob12.pos()
-    ob13.pos()
-    ob14.pos()
-    ob15.pos()
-    ob16.pos()
-    ob17.pos()
-    ob18.pos()
-    ob19.pos()
-    ob20.pos()
-    ob21.pos()
-    ob22.pos()
-    ob23.pos()
-    ob24.pos()
-    ob25.pos()
-    ob26.pos()
-    ob27.pos()
-    ob28.pos()
-    ob29.pos()
-    ob30.pos()
-    ob31.pos()
-    ob32.pos()
-    ob33.pos()
-    ob34.pos()
-    ob35.pos()
-    ob36.pos()
-    ob37.pos()
-    ob38.pos()
-    ob39.pos()
-    ob40.pos()
-    ob41.pos()
-    ob42.pos()
-    ob43.pos()
-    ob44.pos()
-    ob45.pos()
-    ob46.pos()
-    ob47.pos()
-    ob48.pos()
-    ob49.pos()
-    ob50.pos()
-    ob51.pos()
-    ob52.pos()
-    ob53.pos()
-    ob54.pos()
-    ob55.pos()
-    ob56.pos()
-    ob57.pos()
-    ob58.pos()
-    ob59.pos()
-    ob60.pos()
-    ob61.pos()
-    ob62.pos()
-    ob63.pos()
-    ob64.pos()
-    ob65.pos()
-    ob66.pos()
-    ob67.pos()
-    ob68.pos()
-    ob69.pos()
-    ob70.pos()
-    ob71.pos()
-    ob72.pos()
-    ob73.pos()
-    ob74.pos()
-    ob76.pos()
-    ob77.pos()
-    ob78.pos()
-    ob79.pos()
-    ob80.pos()
-    ob81.pos()
-    ob82.pos()
-    ob83.pos()
-    ob84.pos()
-    ob85.pos()
-    ob86.pos()
-    ob87.pos()
-    ob89.pos()
-    ob90.pos()
-    ob91.pos()
-    ob92.pos()
-    ob93.pos()
-    ob94.pos()
-    ob95.pos()
-    ob96.pos()
-    ob97.pos()
-    ob98.pos()
-    ob99.pos()
-    ob100.pos()
-    ob101.pos()
-    ob102.pos()
-    ob103.pos()
-    ob104.pos()
-    ob105.pos()
-    ob106.pos()
-    ob107.pos()
-    ob108.pos()
-    ob109.pos()
-    ob110.pos()
-    ob111.pos()
-    ob112.pos()
-    ob113.pos()
-    ob114.pos()
-    ob115.pos()
-    ob116.pos()
-    ob117.pos()
-    ob118.pos()
-    ob119.pos()
-    ob120.pos()
-    ob121.pos()
-    ob122.pos()
-    ob123.pos()
-    ob124.pos()
-    ob125.pos()
-    ob126.pos()
-    ob127.pos()
-    ob128.pos()
-    ob129.pos()
-    ob130.pos()
-    ob131.pos()
-    ob132.pos()
-    ob133.pos()
 
 
     if(timer > 1200):
@@ -611,13 +492,48 @@ while not gameExit:
         ob132.left(7)
     if(timer > 213200):
         ob133.left(7)
+    if (timer > 500) and (timer<1055):
+        firstinstruct=myfonter.render("TWENTYONE PILOTS- HOMETOWN", 1, (156,254,149))
+        gameDisplay.blit(firstinstruct, (50, 400))
 
 
-    blocks_hit_list = pygame.sprite.spritecollide(player, spritesgroup, True)
-    print(blocks_hit_list)
+    blocks_hit_list = pygame.sprite.spritecollide(pointob, spritesgroup, True)
+    player_hit_list =  pygame.sprite.spritecollide(player, spritesgroup, True)
+
+    pygame.sprite.spritecollide(player, spritesgroup, True)
     if (blocks_hit_list!=[]):
-        score-=10
-        print(score)
+        score+=10
+        y=str(score)
+        #print(score)
+        #print(y)
+    if (player_hit_list !=[]):
+        score-=5
+        y=str(score)
+    score1=myfont.render(y, 1, (156,254,149))
+    gameDisplay.blit(score1,(300, 50))
+    label = myfont.render("YOUR CURRENT SCORE IS:", 1, (160,243,252))
+    gameDisplay.blit(label, (300, 0))
+    if int(y)>int(b):
+        b=y
+    if (timer>223200 and timer<233200):
+        if b==y:
+            first=myfont.render("NEW HIGH SCORE!", 1, (156,254,149))
+            gameDisplay.blit(first, (50, 400))
+            scorefile=open("m83scores.txt", "w")
+            b=str(b)
+            scorefile.write(b)
+            scorefile.close()
+        else:
+            b=str(b)
+            highscores=("ALL TIME HIGH SCORE IS " + b)
+            first=myfont.render(highscores, 1, (156,254,149))
+            gameDisplay.blit(first, (50, 400))
+            scorefile=open("m83scores.txt", "w")
+            scorefile.write(b)
+            scorefile.close()
 
 pygame.quit() #unintiliazes pygames
-quit() #this will exit out of python
+
+with open("menu.py") as f:
+    code = compile(f.read(), "menu.py", 'exec')
+    exec(code)
