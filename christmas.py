@@ -10,6 +10,7 @@ gameDisplay= pygame.display.set_mode((800, 600))
 bg=pygame.image.load('clouds_converted.jpg')
 moore=pygame.image.load("baemoore_converted.png")
 myfont = pygame.font.SysFont("Extrude.ttf", 30)
+myfonter =pygame.font.SysFont("AldotheApache",60)
 jump = False
 fall = False
 
@@ -18,6 +19,14 @@ cube = pygame.image.load("cube.png")
 pointob=sprites(cube, -10, 580) #the cube it will hit
 pointob.pos()
 player=sprites(moore, 50, 544)
+
+score=0
+y=str(score)
+scorething=open("christmasscores.txt", "r")
+scoresentence=scorething.readline()
+b=scoresentence.strip()
+b=int(b)
+scorething.close()
 
 ob = sprites(cube, 4400, 580)
 ob1 = sprites(cube, 4400, 580)
@@ -233,6 +242,8 @@ while not gameExit:
                     print("************************HELLO************************")
                     jump = True
             if event.key == pygame.K_ESCAPE:
+                gameExit= True
+            if event.key == pygame.K_RETURN:
                 gameExit= True
     if jump:
         player.rect.y -= 65
@@ -589,10 +600,28 @@ while not gameExit:
         y=str(score)
     score1=myfont.render(y, 1, (156,254,149))
     gameDisplay.blit(score1,(300, 50))
-
-
     label = myfont.render("YOUR CURRENT SCORE IS:", 1, (160,243,252))
     gameDisplay.blit(label, (300, 0))
+    if int(y)>int(b):
+        b=y
+    if (timer>223200 and timer<233200):
+        if b==y:
+            first=myfont.render("NEW HIGH SCORE!", 1, (156,254,149))
+            gameDisplay.blit(first, (50, 400))
+            scorefile=open("christmasscores.txt", "w")
+            b=str(b)
+            scorefile.write(b)
+            scorefile.close()
+        else:
+            b=str(b)
+            highscores=("ALL TIME HIGH SCORE IS " + b)
+            first=myfont.render(highscores, 1, (156,254,149))
+            gameDisplay.blit(first, (50, 400))
+            scorefile=open("christmasscores.txt", "w")
+            scorefile.write(b)
+            scorefile.close()
 
 pygame.quit() #unintiliazes pygames
-quit() #this will exit out of python
+with open("menu.py") as f:
+    code = compile(f.read(), "menu.py", 'exec')
+    exec(code)

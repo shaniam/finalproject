@@ -8,7 +8,7 @@ import os
 import math
 
 class selfMenu(ShowBase):
-    def __init__(self):
+    def __init__(self): #Ryan
         """Creates initial window"""
         # Set up the window, camera, etc.
         ShowBase.__init__(self)
@@ -17,11 +17,11 @@ class selfMenu(ShowBase):
         #Loads the world
         self.newScreen()
 
-    def setKey(self, key, value):
+    def setKey(self, key, value): #Ryan/Lesly
         """Binds moving actions to keys"""
         self.keyMap[key] = value
 
-    def move(self, task):
+    def move(self, task): #Ryan/Lesly
         """Moves actor around and gets camera to follow"""
 
         #Time since the last frame was called
@@ -66,60 +66,59 @@ class selfMenu(ShowBase):
 
 
         # Makes lines that Moore can collide with to trigger an event
-        self.collisionEvent('castle',-5,-80,10)
-        self.collisionEvent('house',-70,-10,20)
-        self.collisionEvent('tepee',-10,115, 10)
-        self.collisionEvent('halloffame',55,-10,10)
-        self.collisionEvent('fifthline',-200,180,320)
-        self.collisionEvent('sixthline',120,-188,368)
-        self.collisionEvent('seventhline',-200,-188,320)
-        self.collisionEvent('eighthline',-200,-188,368)
+        self.collisionevent('castle',-5,-80,10)
+        self.collisionevent('house',-70,-10,20)
+        self.collisionevent('tepee',-10,115, 10)
+        self.collisionevent('halloffame',55,-10,10)
+        self.collisionevent('fifthline',-200,180,320)
+        self.collisionevent('sixthline',120,-188,368)
+        self.collisionevent('seventhline',-200,-188,320)
+        self.collisionevent('eighthline',-200,-188,368)
 
         return task.cont
 
-    def collisionEvent(self,name,startx,starty,iterations):
+    def collisionevent(self,name,startx,starty,iterations): #Lesly
         """Triggers an event upon a collision"""
-        xNames=["castle","tepee","fifthline","seventhline"]
-        yNames=["house","halloffame","sixthline","eighthline"]
-        levelNames=['castle','house','tepee','halloffame']
-        outsideNames=['fifthline','sixthline','seventhline','eighthline']
+        xnames=["castle","tepee","fifthline","seventhline"]
+        ynames=["house","halloffame","sixthline","eighthline"]
+        levelnames=['castle','house','tepee','halloffame']
+        outsidenames=['fifthline','sixthline','seventhline','eighthline']
         self.name=LineSegs(name)
         self.name.moveTo(startx,starty,0)
         x=startx
         y=starty
         for i in range(iterations):
             self.name.drawTo(x,y,0)
-            if name in xNames:
+            if name in xnames:
                 x+=1
-            if name in yNames:
+            if name in ynames:
                 y+=1
         self.name.create()
-        vertexList=self.name.getVertices()
+        vertexlist=self.name.getVertices()
 
-        coorList=[]
+        coorlist=[]
 
-        for i in range(len(vertexList)):
-            coorList.append([vertexList[i][0],vertexList[i][1]])
+        for i in range(len(vertexlist)):
+            coorlist.append([vertexlist[i][0],vertexlist[i][1]])
 
 
-        mooreCoor= [int(self.moore.getX()),int(self.moore.getY())]
+        moorecoor= [int(self.moore.getX()),int(self.moore.getY())]
 
-        if (mooreCoor in coorList):
-            if name in levelNames:
+        if (moorecoor in coorlist):
+            if name in levelnames:
                 base.graphicsEngine.removeWindow(self.win)
                 self.secondWindow(name)
 
-            if name in outsideNames:
+            if name in outsidenames:
                 self.moore.setPos(0,0,0)
 
-    def secondWindow(self,name):
+    def secondWindow(self,name): #Lesly
         #secondwindowcode, after level code based on level
         if name=='castle':
-             #pygame code level one
             self.music.stop()
             with open("christmas.py") as f:
                 code = compile(f.read(), "christmas.py", 'exec')
-                exec(code) #pygame code level one
+                exec(code)
 
         if name=='house':
             self.music.stop()
@@ -134,9 +133,9 @@ class selfMenu(ShowBase):
                 exec(code)
 
         if name=='halloffame':
-            print("") #pygame code level four
+            print("")
 
-    def startMusic(self):
+    def startMusic(self): #Ryan
         """Starts and stops music"""
         if self.music:
             self.music.stop()
@@ -146,12 +145,12 @@ class selfMenu(ShowBase):
             self.music.play()
 
 
-    def newScreen(self):
+    def newScreen(self): #Ryan
         """Creates screen with world model and actors"""
 
         #Loads world model
-        self.environ = loader.loadModel("phase/trialworld.bam")
-        self.environ.reparentTo(render)
+        self.world = loader.loadModel("phase/trialworld.bam")
+        self.world.reparentTo(render)
         #Loads the font
         self.font = loader.loadFont("phase/LemonMilk.ttf")
 
@@ -206,13 +205,13 @@ class selfMenu(ShowBase):
         self.accept("escape", sys.exit)
 
 
-    def addInstructions(self, pos, msg, font):
+    def addInstructions(self, pos, msg, font): #Ryan
         """Posts instructions on screen"""
         return OnscreenText(text=msg, style=1, font=font, fg=(1, 1, 1, 1), scale=.05,
                             shadow=(0, 0, 0, 1), parent=base.a2dTopLeft,
                             pos=(0.08, -pos - 0.04), align=TextNode.ALeft)
 
-    def addTitle(self, text, font):
+    def addTitle(self, text, font): #Ryan
         """Posts title on screen"""
         return OnscreenText(text=text, style=1, font=font, fg=(1, 1, 1, 1), scale=.07,
                             parent=base.a2dBottomRight, align=TextNode.ARight,
