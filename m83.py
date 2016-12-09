@@ -3,537 +3,555 @@ import pygame
 import os
 import time
 
-pygame.init() #short for initialize does return a tuple of successful intilizaton
-colors={"black":(0,0,0), "white": (255, 255, 255), "red": (255, 0, 0), "green": (0, 255, 0), "purple": (164, 66, 244), "pink" :(252, 25, 123)}
-gameDisplay= pygame.display.set_mode((800, 600))
+class Controller:
+    def __init__(self):
+        pygame.init() #short for initialize does return a tuple of successful intilizaton
+        colors={"black":(0,0,0), "white": (255, 255, 255), "red": (255, 0, 0), "green": (0, 255, 0), "purple": (164, 66, 244), "pink" :(252, 25, 123)}
+        self.gameDisplay= pygame.display.set_mode((800, 600))
 
-bg=pygame.image.load('clouds_converted.jpg')
-moore=pygame.image.load("baemoore_converted.png")
-myfont = pygame.font.SysFont("Extrude", 30)
-myfonter =pygame.font.SysFont("AldotheApache",60)
+        self.bg=pygame.image.load('clouds_converted.jpg')
+        self.moore=pygame.image.load("baemoore_converted.png")
+        self.myfont = pygame.font.SysFont("Extrude", 30)
+        self.myfonter =pygame.font.SysFont("AldotheApache",60)
 
-jump = False
-fall = False
-
-
-pygame.display.set_caption("lets play!")
-theSong=ourMusic("m83.ogg")
-theSong.musicUpload()
-theSong.musicPlay()
-gameExit = False
-clock = pygame.time.Clock()
-
-score=0
-y=str(score)
-scorething=open("m83scores.txt", "r")
-scoresentence=scorething.readline()
-b=scoresentence.strip()
-b=int(b)
-scorething.close()
+        self.jump = False
+        self.fall = False
 
 
-cube = pygame.image.load("cube.png")
-player=sprites(moore, 50, 544)
+        pygame.display.set_caption("lets play!")
+        self.thesong=ourMusic("m83.ogg")
+        self.thesong.musicUpload()
+        self.thesong.musicPlay()
+        self.gameExit = False
+        self.clock = pygame.time.Clock()
 
-pointob=sprites(cube, -10, 580) #the cube it will hit
-pointob.pos()
-player=sprites(moore, 50, 544)
-
-ob = sprites(cube, 2125, 580)
-ob1 = sprites(cube, 2125, 580)
-ob2 = sprites(cube, 2125, 580)
-ob3 = sprites(cube, 2125, 580)
-ob4 = sprites(cube, 2125, 580)
-ob5 = sprites(cube, 2125, 580)
-ob6 = sprites(cube, 2125, 580)
-ob7 = sprites(cube, 2125, 580)
-ob8 = sprites(cube, 2125, 580)
-ob9 = sprites(cube, 2125, 580)
-ob10 = sprites(cube, 2125, 580)
-ob11 = sprites(cube, 2125, 580)
-ob12 = sprites(cube, 2125, 580)
-ob13 = sprites(cube, 2125, 580)
-ob14 = sprites(cube, 2125, 580)
-ob15 = sprites(cube, 2125, 580)
-ob16 = sprites(cube, 2125, 580)
-ob17 = sprites(cube, 2125, 580)
-ob18 = sprites(cube, 2125, 580)
-ob19 = sprites(cube, 2125, 580)
-ob20 = sprites(cube, 2125, 580)
-ob21 = sprites(cube, 2125, 580)
-ob22 = sprites(cube, 2125, 580)
-ob23 = sprites(cube, 2125, 580)
-ob24 = sprites(cube, 2125, 580)
-ob25 = sprites(cube, 2125, 580)
-ob26 = sprites(cube, 2125, 580)
-ob27 = sprites(cube, 2125, 580)
-ob28 = sprites(cube, 2125, 580)
-ob29 = sprites(cube, 2125, 580)
-ob30 = sprites(cube, 2125, 580)
-ob31 = sprites(cube, 2125, 580)
-ob32 = sprites(cube, 2125, 580)
-ob33 = sprites(cube, 2125, 580)
-ob34 = sprites(cube, 2125, 580)
-ob35 = sprites(cube, 2125, 580)
-ob36 = sprites(cube, 2125, 580)
-ob37 = sprites(cube, 2125, 580)
-ob38 = sprites(cube, 2125, 580)
-ob39 = sprites(cube, 2125, 580)
-ob40 = sprites(cube, 2125, 580)
-ob41 = sprites(cube, 2125, 580)
-ob42 = sprites(cube, 2125, 580)
-ob43 = sprites(cube, 2125, 580)
-ob44 = sprites(cube, 2125, 580)
-ob45 = sprites(cube, 2125, 580)
-ob46 = sprites(cube, 2125, 580)
-ob47 = sprites(cube, 2125, 580)
-ob48 = sprites(cube, 2125, 580)
-ob49 = sprites(cube, 2125, 580)
-ob50 = sprites(cube, 2125, 580)
-ob51 = sprites(cube, 2125, 580)
-ob52 = sprites(cube, 2125, 580)
-ob53 = sprites(cube, 2125, 580)
-ob54 = sprites(cube, 2125, 580)
-ob55 = sprites(cube, 2125, 580)
-ob56 = sprites(cube, 2125, 580)
-ob57 = sprites(cube, 2125, 580)
-ob58 = sprites(cube, 2125, 580)
-ob59 = sprites(cube, 2125, 580)
-ob60 = sprites(cube, 2125, 580)
-ob61 = sprites(cube, 2125, 580)
-ob62 = sprites(cube, 2125, 580)
-ob63 = sprites(cube, 2125, 580)
-ob64 = sprites(cube, 2125, 580)
-ob65 = sprites(cube, 2125, 580)
-ob66 = sprites(cube, 2125, 580)
-ob67 = sprites(cube, 2125, 580)
-ob68 = sprites(cube, 2125, 580)
-ob69 = sprites(cube, 2125, 580)
-ob70 = sprites(cube, 2125, 580)
-ob71 = sprites(cube, 2125, 580)
-ob72 = sprites(cube, 2125, 580)
-ob73 = sprites(cube, 2125, 580)
-ob74 = sprites(cube, 2125, 580)
-ob75 = sprites(cube, 2125, 580)
-ob76 = sprites(cube, 2125, 580)
-ob77 = sprites(cube, 2125, 580)
-ob78 = sprites(cube, 2125, 580)
-ob79 = sprites(cube, 2125, 580)
-ob80 = sprites(cube, 2125, 580)
-ob81 = sprites(cube, 2125, 580)
-ob82 = sprites(cube, 2125, 580)
-ob83 = sprites(cube, 2125, 580)
-ob84 = sprites(cube, 2125, 580)
-ob85 = sprites(cube, 2125, 580)
-ob86 = sprites(cube, 2125, 580)
-ob87 = sprites(cube, 2125, 580)
-ob88 = sprites(cube, 2125, 580)
-ob89 = sprites(cube, 2125, 580)
-ob90 = sprites(cube, 2125, 580)
-ob91 = sprites(cube, 2125, 580)
-ob92 = sprites(cube, 2125, 580)
-ob93 = sprites(cube, 2125, 580)
-ob94 = sprites(cube, 2125, 580)
-ob95 = sprites(cube, 2125, 580)
-ob96 = sprites(cube, 2125, 580)
-ob97 = sprites(cube, 2125, 580)
-ob98 = sprites(cube, 2125, 580)
-ob99 = sprites(cube, 2125, 580)
-ob100 = sprites(cube, 2125, 580)
-ob101 = sprites(cube, 2125, 580)
-ob102 = sprites(cube, 2125, 580)
-ob103 = sprites(cube, 2125, 580)
-ob104 = sprites(cube, 2125, 580)
-ob105 = sprites(cube, 2125, 580)
-ob106 = sprites(cube, 2125, 580)
-ob107 = sprites(cube, 2125, 580)
-ob108 = sprites(cube, 2125, 580)
-ob109 = sprites(cube, 2125, 580)
-ob110 = sprites(cube, 2125, 580)
-ob111 = sprites(cube, 2125, 580)
-ob112 = sprites(cube, 2125, 580)
-ob113 = sprites(cube, 2125, 580)
-ob114 = sprites(cube, 2125, 580)
-ob115 = sprites(cube, 2125, 580)
-ob116 = sprites(cube, 2125, 580)
-ob117 = sprites(cube, 2125, 580)
-ob118 = sprites(cube, 2125, 580)
-ob119 = sprites(cube, 2125, 580)
-ob120 = sprites(cube, 2125, 580)
-ob121 = sprites(cube, 2125, 580)
-ob122 = sprites(cube, 2125, 580)
-ob123 = sprites(cube, 2125, 580)
-ob124 = sprites(cube, 2125, 580)
-ob125 = sprites(cube, 2125, 580)
-ob126 = sprites(cube, 2125, 580)
-ob127 = sprites(cube, 2125, 580)
-ob128 = sprites(cube, 2125, 580)
-ob129 = sprites(cube, 2125, 580)
-ob130 = sprites(cube, 2125, 580)
-ob131 = sprites(cube, 2125, 580)
-ob132 = sprites(cube, 2125, 580)
-ob133 = sprites(cube, 2125, 580)
-
-spritesgroup=pygame.sprite.Group()
-spritesgroup.add(ob, ob1, ob2, ob3, ob4, ob5, ob6, ob7, ob8, ob9, ob10,
-                 ob11, ob12, ob13, ob14, ob15, ob16, ob17, ob18, ob19, ob20,
-                 ob21, ob22, ob23, ob24, ob25, ob26, ob27, ob28, ob29, ob30,
-                 ob31, ob32, ob33, ob34, ob35, ob36, ob37, ob38, ob39, ob40,
-                 ob41, ob42, ob43, ob44, ob45, ob46, ob47, ob48, ob49, ob50,
-                 ob51, ob52, ob53, ob54, ob55, ob56, ob57, ob58, ob59, ob60,
-                 ob61, ob62, ob63, ob64, ob65, ob66, ob67, ob68, ob69, ob70,
-                 ob71, ob72, ob73, ob74, ob75, ob76, ob77, ob78, ob79, ob80,
-                 ob81, ob82, ob83, ob84, ob85, ob86, ob87, ob88, ob89, ob90,
-                 ob91, ob92, ob93, ob94, ob95, ob96, ob97, ob98, ob99, ob100,
-                 ob101, ob102, ob103, ob104, ob105, ob106, ob107, ob108, ob109, ob110,
-                 ob111, ob112, ob113, ob114, ob115, ob116, ob117, ob118, ob119, ob120,
-                 ob121, ob122, ob123, ob124, ob125, ob126, ob127, ob128, ob129, ob130,
-                 ob131, ob132, ob133)
+        self.score=0
+        self.y=str(self.score)
+        self.scorething=open("m83scores.txt", "r")
+        self.scoresentence=self.scorething.readline()
+        self.b=self.scoresentence.strip()
+        self.b=int(self.b)
+        self.scorething.close()
 
 
-while not gameExit:
-    clock.tick(40)
-    timer = pygame.time.get_ticks()
-    #print(timer)
-    for event in pygame.event.get():
-        if event.type==pygame.QUIT:
-            gameExit=True
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
-                if not fall:
-                    jump = True
-            if event.key == pygame.K_RETURN:
-                gameExit= True
-    if jump:
-        player.rect.y -= 16
-        if player.rect.y <= 410:
-            ycoor = 500
-            jump = False
-            fall = True
+        self.cube = pygame.image.load("cube.png")
+        self.layer=sprites(self.moore, 50, 544)
 
-    if fall:
-        player.rect.y += 16
-        if player.rect.y >= 544:
-            ycoor = 0
-            fall = False
+        self.pointo=sprites(self.cube, -10, 580) #the cube it will hit
+        self.pointo.pos()
+        self.player=sprites(self.moore, 50, 544)
 
-    pygame.display.update()
-    gameDisplay.blit(bg,[0,0])
-    #gameDisplay.fill(colors["pink"])
-    time.sleep(.05)
-    player.pos()
-    spritesgroup.draw(gameDisplay)
-    ob.left(7)
+        self.ob = sprites(self.cube, 2125, 580)
+        self.ob1 = sprites(self.cube, 2125, 580)
+        self.ob2 = sprites(self.cube, 2125, 580)
+        self.ob3 = sprites(self.cube, 2125, 580)
+        self.ob4 = sprites(self.cube, 2125, 580)
+        self.ob5 = sprites(self.cube, 2125, 580)
+        self.ob6 = sprites(self.cube, 2125, 580)
+        self.ob7 = sprites(self.cube, 2125, 580)
+        self.ob8 = sprites(self.cube, 2125, 580)
+        self.ob9 = sprites(self.cube, 2125, 580)
+        self.ob10 = sprites(self.cube, 2125, 580)
+        self.ob11 = sprites(self.cube, 2125, 580)
+        self.ob12 = sprites(self.cube, 2125, 580)
+        self.ob13 = sprites(self.cube, 2125, 580)
+        self.ob14 = sprites(self.cube, 2125, 580)
+        self.ob15 = sprites(self.cube, 2125, 580)
+        self.ob16 = sprites(self.cube, 2125, 580)
+        self.ob17 = sprites(self.cube, 2125, 580)
+        self.ob18 = sprites(self.cube, 2125, 580)
+        self.ob19 = sprites(self.cube, 2125, 580)
+        self.ob20 = sprites(self.cube, 2125, 580)
+        self.ob21 = sprites(self.cube, 2125, 580)
+        self.ob22 = sprites(self.cube, 2125, 580)
+        self.ob23 = sprites(self.cube, 2125, 580)
+        self.ob24 = sprites(self.cube, 2125, 580)
+        self.ob25 = sprites(self.cube, 2125, 580)
+        self.ob26 = sprites(self.cube, 2125, 580)
+        self.ob27 = sprites(self.cube, 2125, 580)
+        self.ob28 = sprites(self.cube, 2125, 580)
+        self.ob29 = sprites(self.cube, 2125, 580)
+        self.ob30 = sprites(self.cube, 2125, 580)
+        self.ob31 = sprites(self.cube, 2125, 580)
+        self.ob32 = sprites(self.cube, 2125, 580)
+        self.ob33 = sprites(self.cube, 2125, 580)
+        self.ob34 = sprites(self.cube, 2125, 580)
+        self.ob35 = sprites(self.cube, 2125, 580)
+        self.ob36 = sprites(self.cube, 2125, 580)
+        self.ob37 = sprites(self.cube, 2125, 580)
+        self.ob38 = sprites(self.cube, 2125, 580)
+        self.ob39 = sprites(self.cube, 2125, 580)
+        self.ob40 = sprites(self.cube, 2125, 580)
+        self.ob41 = sprites(self.cube, 2125, 580)
+        self.ob42 = sprites(self.cube, 2125, 580)
+        self.ob43 = sprites(self.cube, 2125, 580)
+        self.ob44 = sprites(self.cube, 2125, 580)
+        self.ob45 = sprites(self.cube, 2125, 580)
+        self.ob46 = sprites(self.cube, 2125, 580)
+        self.ob47 = sprites(self.cube, 2125, 580)
+        self.ob48 = sprites(self.cube, 2125, 580)
+        self.ob49 = sprites(self.cube, 2125, 580)
+        self.ob50 = sprites(self.cube, 2125, 580)
+        self.ob51 = sprites(self.cube, 2125, 580)
+        self.ob52 = sprites(self.cube, 2125, 580)
+        self.ob53 = sprites(self.cube, 2125, 580)
+        self.ob54 = sprites(self.cube, 2125, 580)
+        self.ob55 = sprites(self.cube, 2125, 580)
+        self.ob56 = sprites(self.cube, 2125, 580)
+        self.ob57 = sprites(self.cube, 2125, 580)
+        self.ob58 = sprites(self.cube, 2125, 580)
+        self.ob59 = sprites(self.cube, 2125, 580)
+        self.ob60 = sprites(self.cube, 2125, 580)
+        self.ob61 = sprites(self.cube, 2125, 580)
+        self.ob62 = sprites(self.cube, 2125, 580)
+        self.ob63 = sprites(self.cube, 2125, 580)
+        self.ob64 = sprites(self.cube, 2125, 580)
+        self.ob65 = sprites(self.cube, 2125, 580)
+        self.ob66 = sprites(self.cube, 2125, 580)
+        self.ob67 = sprites(self.cube, 2125, 580)
+        self.ob68 = sprites(self.cube, 2125, 580)
+        self.ob69 = sprites(self.cube, 2125, 580)
+        self.ob70 = sprites(self.cube, 2125, 580)
+        self.ob71 = sprites(self.cube, 2125, 580)
+        self.ob72 = sprites(self.cube, 2125, 580)
+        self.ob73 = sprites(self.cube, 2125, 580)
+        self.ob74 = sprites(self.cube, 2125, 580)
+        self.ob75 = sprites(self.cube, 2125, 580)
+        self.ob76 = sprites(self.cube, 2125, 580)
+        self.ob77 = sprites(self.cube, 2125, 580)
+        self.ob78 = sprites(self.cube, 2125, 580)
+        self.ob79 = sprites(self.cube, 2125, 580)
+        self.ob80 = sprites(self.cube, 2125, 580)
+        self.ob81 = sprites(self.cube, 2125, 580)
+        self.ob82 = sprites(self.cube, 2125, 580)
+        self.ob83 = sprites(self.cube, 2125, 580)
+        self.ob84 = sprites(self.cube, 2125, 580)
+        self.ob85 = sprites(self.cube, 2125, 580)
+        self.ob86 = sprites(self.cube, 2125, 580)
+        self.ob87 = sprites(self.cube, 2125, 580)
+        self.ob88 = sprites(self.cube, 2125, 580)
+        self.ob89 = sprites(self.cube, 2125, 580)
+        self.ob90 = sprites(self.cube, 2125, 580)
+        self.ob91 = sprites(self.cube, 2125, 580)
+        self.ob92 = sprites(self.cube, 2125, 580)
+        self.ob93 = sprites(self.cube, 2125, 580)
+        self.ob94 = sprites(self.cube, 2125, 580)
+        self.ob95 = sprites(self.cube, 2125, 580)
+        self.ob96 = sprites(self.cube, 2125, 580)
+        self.ob97 = sprites(self.cube, 2125, 580)
+        self.ob98 = sprites(self.cube, 2125, 580)
+        self.ob99 = sprites(self.cube, 2125, 580)
+        self.ob100 = sprites(self.cube, 2125, 580)
+        self.ob101 = sprites(self.cube, 2125, 580)
+        self.ob102 = sprites(self.cube, 2125, 580)
+        self.ob103 = sprites(self.cube, 2125, 580)
+        self.ob104 = sprites(self.cube, 2125, 580)
+        self.ob105 = sprites(self.cube, 2125, 580)
+        self.ob106 = sprites(self.cube, 2125, 580)
+        self.ob107 = sprites(self.cube, 2125, 580)
+        self.ob108 = sprites(self.cube, 2125, 580)
+        self.ob109 = sprites(self.cube, 2125, 580)
+        self.ob110 = sprites(self.cube, 2125, 580)
+        self.ob111 = sprites(self.cube, 2125, 580)
+        self.ob112 = sprites(self.cube, 2125, 580)
+        self.ob113 = sprites(self.cube, 2125, 580)
+        self.ob114 = sprites(self.cube, 2125, 580)
+        self.ob115 = sprites(self.cube, 2125, 580)
+        self.ob116 = sprites(self.cube, 2125, 580)
+        self.ob117 = sprites(self.cube, 2125, 580)
+        self.ob118 = sprites(self.cube, 2125, 580)
+        self.ob119 = sprites(self.cube, 2125, 580)
+        self.ob120 = sprites(self.cube, 2125, 580)
+        self.ob121 = sprites(self.cube, 2125, 580)
+        self.ob122 = sprites(self.cube, 2125, 580)
+        self.ob123 = sprites(self.cube, 2125, 580)
+        self.ob124 = sprites(self.cube, 2125, 580)
+        self.ob125 = sprites(self.cube, 2125, 580)
+        self.ob126 = sprites(self.cube, 2125, 580)
+        self.ob127 = sprites(self.cube, 2125, 580)
+        self.ob128 = sprites(self.cube, 2125, 580)
+        self.ob129 = sprites(self.cube, 2125, 580)
+        self.ob130 = sprites(self.cube, 2125, 580)
+        self.ob131 = sprites(self.cube, 2125, 580)
+        self.ob132 = sprites(self.cube, 2125, 580)
+        self.ob133 = sprites(self.cube, 2125, 580)
 
+        self.spritesgroup=pygame.sprite.Group()
+        self.spritesgroup.add(self.ob, self.ob1, self.ob2, self.ob3, self.ob4, self.ob5, self.ob6, self.ob7, self.ob8, self.ob9, self.ob10,
+                         self.ob11, self.ob12, self.ob13, self.ob14, self.ob15, self.ob16, self.ob17, self.ob18, self.ob19, self.ob20,
+                         self.ob21, self.ob22, self.ob23, self.ob24, self.ob25, self.ob26, self.ob27, self.ob28, self.ob29, self.ob30,
+                         self.ob31, self.ob32, self.ob33, self.ob34, self.ob35, self.ob36, self.ob37, self.ob38, self.ob39, self.ob40,
+                         self.ob41, self.ob42, self.ob43, self.ob44, self.ob45, self.ob46, self.ob47, self.ob48, self.ob49, self.ob50,
+                         self.ob51, self.ob52, self.ob53, self.ob54, self.ob55, self.ob56, self.ob57, self.ob58, self.ob59, self.ob60,
+                         self.ob61, self.ob62, self.ob63, self.ob64, self.ob65, self.ob66, self.ob67, self.ob68, self.ob69, self.ob70,
+                         self.ob71, self.ob72, self.ob73, self.ob74, self.ob75, self.ob76, self.ob77, self.ob78, self.ob79, self.ob80,
+                         self.ob81, self.ob82, self.ob83, self.ob84, self.ob85, self.ob86, self.ob87, self.ob88, self.ob89, self.ob90,
+                         self.ob91, self.ob92, self.ob93, self.ob94, self.ob95, self.ob96, self.ob97, self.ob98, self.ob99, self.ob100,
+                         self.ob101, self.ob102, self.ob103, self.ob104, self.ob105, self.ob106, self.ob107, self.ob108, self.ob109, self.ob110,
+                         self.ob111, self.ob112, self.ob113, self.ob114, self.ob115, self.ob116, self.ob117, self.ob118, self.ob119, self.ob120,
+                         self.ob121, self.ob122, self.ob123, self.ob124, self.ob125, self.ob126, self.ob127, self.ob128, self.ob129, self.ob130,
+                         self.ob131, self.ob132, self.ob133)
 
-    if(timer > 1200):
-        ob1.left(7)
-    if(timer > 2800):
-        ob2.left(7)
-    if(timer > 4000):
-        ob3.left(7)
-    if(timer > 5200):
-        ob4.left(7)
-    if(timer > 6400):
-        ob5.left(7)
-    if(timer > 7600):
-        ob6.left(7)
-    if(timer > 8800):
-        ob7.left(7)
-    if(timer > 10000):
-        ob8.left(7)
-    if(timer > 11200):
-        ob9.left(7)
-    if(timer > 12400):
-        ob10.left(7)
-    if(timer > 13600):
-        ob11.left(7)
-    if(timer > 14800):
-        ob12.left(7)
-    if(timer > 16000):
-        ob13.left(7)
-    if(timer > 17200):
-        ob14.left(7)
-    if(timer > 18400):
-        ob15.left(7)
-    if(timer > 20800):
-        ob16.left(7)
-    if(timer > 22000):
-        ob17.left(7)
-    if(timer > 23200):
-        ob18.left(7)
-    if(timer > 24400):
-        ob19.left(7)
-    if(timer > 25600):
-        ob20.left(7)
-    if(timer > 29200):
-        ob21.left(7)
-    if(timer > 30400):
-        ob22.left(7)
-    if(timer > 31600):
-        ob23.left(7)
-    if(timer > 32800):
-        ob24.left(7)
-    if(timer > 34000):
-        ob25.left(7)
-    if(timer > 35200):
-        ob26.left(7)
-    if(timer > 36400):
-        ob27.left(7)
-    if(timer > 37600):
-        ob28.left(7)
-    if(timer > 38800):
-        ob29.left(7)
-    if(timer > 41200):
-        ob30.left(7)
-    if(timer > 44800):
-        ob31.left(7)
-    if(timer > 46000):
-        ob32.left(7)
-    if(timer > 47200):
-        ob33.left(7)
-    if(timer > 48400):
-        ob34.left(7)
-    if(timer > 50800):
-        ob35.left(7)
-    if(timer > 53200):
-        ob36.left(7)
-    if(timer > 54400):
-        ob37.left(7)
-    if(timer > 55600):
-        ob38.left(7)
-    if(timer > 59200):
-        ob39.left(7)
-    if(timer > 60400):
-        ob40.left(7)
-    if(timer > 61600):
-        ob41.left(7)
-    if(timer > 62800):
-        ob42.left(7)
-    if(timer > 65200):
-        ob43.left(7)
-    if(timer > 66400):
-        ob44.left(7)
-    if(timer > 70000):
-        ob45.left(7)
-    if(timer > 71200):
-        ob46.left(7)
-    if(timer > 72400):
-        ob47.left(7)
-    if(timer > 74800):
-        ob48.left(7)
-    if(timer > 76000):
-        ob49.left(7)
-    if(timer > 77200):
-        ob50.left(7)
-    if(timer > 79400):
-        ob51.left(7)
-    if(timer > 80800):
-        ob52.left(7)
-    if(timer > 84400):
-        ob53.left(7)
-    if(timer > 85600):
-        ob54.left(7)
-    if(timer > 86800):
-        ob55.left(7)
-    if(timer > 88000):
-        ob56.left(7)
-    if(timer > 89200):
-        ob57.left(7)
-    if(timer > 90400):
-        ob58.left(7)
-    if(timer > 94000):
-        ob59.left(7)
-    if(timer > 95200):
-        ob60.left(7)
-    if(timer > 96400):
-        ob61.left(7)
-    if(timer > 98600):
-        ob62.left(7)
-    if(timer > 102200):
-        ob63.left(7)
-    if(timer > 103400):
-        ob64.left(7)
-    if(timer > 104600):
-        ob65.left(7)
-    if(timer > 105800):
-        ob66.left(7)
-    if(timer > 108200):
-        ob67.left(7)
-    if(timer > 109400):
-        ob68.left(7)
-    if(timer > 111800):
-        ob69.left(7)
-    if(timer > 113000):
-        ob70.left(7)
-    if(timer > 114200):
-        ob71.left(7)
-    if(timer > 115400):
-        ob72.left(7)
-    if(timer > 119000):
-        ob73.left(7)
-    if(timer > 120200):
-        ob74.left(7)
-    if(timer > 121400):
-        ob75.left(7)
-    if(timer > 122600):
-        ob76.left(7)
-    if(timer > 123800):
-        ob77.left(7)
-    if(timer > 125000):
-        ob78.left(7)
-    if(timer > 128600):
-        ob79.left(7)
-    if(timer > 131000):
-        ob80.left(7)
-    if(timer > 133400):
-        ob81.left(7)
-    if(timer > 134600):
-        ob82.left(7)
-    if(timer > 135800):
-        ob83.left(7)
-    if(timer > 137000):
-        ob84.left(7)
-    if(timer > 138200):
-        ob85.left(7)
-    if(timer > 139400):
-        ob86.left(7)
-    if(timer > 140600):
-        ob87.left(7)
-    if(timer > 144200):
-        ob88.left(7)
-    if(timer > 145400):
-        ob89.left(7)
-    if(timer > 146600):
-        ob90.left(7)
-    if(timer > 147800):
-        ob91.left(7)
-    if(timer > 150200):
-        ob92.left(7)
-    if(timer > 151400):
-        ob93.left(7)
-    if(timer > 152600):
-        ob94.left(7)
-    if(timer > 153800):
-        ob95.left(7)
-    if(timer > 156000):
-        ob96.left(7)
-    if(timer > 159600):
-        ob97.left(7)
-    if(timer > 160800):
-        ob98.left(7)
-    if(timer > 162000):
-        ob99.left(7)
-    if(timer > 163200):
-        ob100.left(7)
-    if(timer > 164400):
-        ob101.left(7)
-    if(timer > 165600):
-        ob102.left(7)
-    if(timer > 168000):
-        ob103.left(7)
-    if(timer > 170400):
-        ob104.left(7)
-    if(timer > 171600):
-        ob105.left(7)
-    if(timer > 172800):
-        ob106.left(7)
-    if(timer > 174000):
-        ob107.left(7)
-    if(timer > 177600):
-        ob108.left(7)
-    if(timer > 178800):
-        ob109.left(7)
-    if(timer > 180000):
-        ob110.left(7)
-    if(timer > 181200):
-        ob111.left(7)
-    if(timer > 182400):
-        ob112.left(7)
-    if(timer > 183600):
-        ob113.left(7)
-    if(timer > 184800):
-        ob114.left(7)
-    if(timer > 186000):
-        ob115.left(7)
-    if(timer > 188400):
-        ob116.left(7)
-    if(timer > 192000):
-        ob117.left(7)
-    if(timer > 193200):
-        ob118.left(7)
-    if(timer > 194400):
-        ob119.left(7)
-    if(timer > 196600):
-        ob120.left(7)
-    if(timer > 198800):
-        ob121.left(7)
-    if(timer > 200000):
-        ob122.left(7)
-    if(timer > 201200):
-        ob123.left(7)
-    if(timer > 202400):
-        ob124.left(7)
-    if(timer > 203600):
-        ob125.left(7)
-    if(timer > 204800):
-        ob126.left(7)
-    if(timer > 206000):
-        ob127.left(7)
-    if(timer > 207200):
-        ob128.left(7)
-    if(timer > 208400):
-        ob129.left(7)
-    if(timer > 209600):
-        ob130.left(7)
-    if(timer > 210800):
-        ob131.left(7)
-    if(timer > 212000):
-        ob132.left(7)
-    if(timer > 213200):
-        ob133.left(7)
-    if (timer > 500) and (timer<1055):
-        firstinstruct=myfonter.render("TWENTYONE PILOTS- HOMETOWN", 1, (156,254,149))
-        gameDisplay.blit(firstinstruct, (50, 400))
+        while not self.gameExit:
+            self.clock.tick(40)
+            self.timer = pygame.time.get_ticks()
+            #print(timer)
+            for event in pygame.event.get():
+                if event.type==pygame.QUIT:
+                    self.gameExit=True
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        print("HERE!!!!!")
+                        if not self.fall:
+                            self.jump = True
+                    if event.key == pygame.K_RETURN:
+                            self.gameExit= True
+            if self.jump:
+                self.player.rect.y -= 16
+                if self.player.rect.y <= 410:
+                    self.ycoor = 500
+                    self.jump = False
+                    self.fall = True
+
+            if self.fall:
+                self.player.rect.y += 16
+                if self.player.rect.y >= 544:
+                    self.ycoor = 0
+                    self.fall = False
+
+            pygame.display.update()
+            self.gameDisplay.blit(self.bg,[0,0])
+            #self.gameDisplay.fill(colors["pink"])
+            time.sleep(.05)
+            self.player.pos()
+            self.spritesgroup.draw(self.gameDisplay)
+            self.ob.left(7)
 
 
-    blocks_hit_list = pygame.sprite.spritecollide(pointob, spritesgroup, True)
-    player_hit_list =  pygame.sprite.spritecollide(player, spritesgroup, True)
+            if(self.timer > 1200):
+                self.ob1.left(7)
+            if(self.timer > 2800):
+                self.ob2.left(7)
+            if(self.timer > 4000):
+                self.ob3.left(7)
+            if(self.timer > 5200):
+                self.ob4.left(7)
+            if(self.timer > 6400):
+                self.ob5.left(7)
+            if(self.timer > 7600):
+                self.ob6.left(7)
+            if(self.timer > 8800):
+                self.ob7.left(7)
+            if(self.timer > 10000):
+                self.ob8.left(7)
+            if(self.timer > 11200):
+                self.ob9.left(7)
+            if(self.timer > 12400):
+                self.ob10.left(7)
+            if(self.timer > 13600):
+                self.ob11.left(7)
+            if(self.timer > 14800):
+                self.ob12.left(7)
+            if(self.timer > 16000):
+                self.ob13.left(7)
+            if(self.timer > 17200):
+                self.ob14.left(7)
+            if(self.timer > 18400):
+                self.ob15.left(7)
+            if(self.timer > 20800):
+                self.ob16.left(7)
+            if(self.timer > 22000):
+                self.ob17.left(7)
+            if(self.timer > 23200):
+                self.ob18.left(7)
+            if(self.timer > 24400):
+                self.ob19.left(7)
+            if(self.timer > 25600):
+                self.ob20.left(7)
+            if(self.timer > 29200):
+                self.ob21.left(7)
+            if(self.timer > 30400):
+                self.ob22.left(7)
+            if(self.timer > 31600):
+                self.ob23.left(7)
+            if(self.timer > 32800):
+                self.ob24.left(7)
+            if(self.timer > 34000):
+                self.ob25.left(7)
+            if(self.timer > 35200):
+                self.ob26.left(7)
+            if(self.timer > 36400):
+                self.ob27.left(7)
+            if(self.timer > 37600):
+                self.ob28.left(7)
+            if(self.timer > 38800):
+                self.ob29.left(7)
+            if(self.timer > 41200):
+                self.ob30.left(7)
+            if(self.timer > 44800):
+                self.ob31.left(7)
+            if(self.timer > 46000):
+                self.ob32.left(7)
+            if(self.timer > 47200):
+                self.ob33.left(7)
+            if(self.timer > 48400):
+                self.ob34.left(7)
+            if(self.timer > 50800):
+                self.ob35.left(7)
+            if(self.timer > 53200):
+                self.ob36.left(7)
+            if(self.timer > 54400):
+                self.ob37.left(7)
+            if(self.timer > 55600):
+                self.ob38.left(7)
+            if(self.timer > 59200):
+                self.ob39.left(7)
+            if(self.timer > 60400):
+                self.ob40.left(7)
+            if(self.timer > 61600):
+                self.ob41.left(7)
+            if(self.timer > 62800):
+                self.ob42.left(7)
+            if(self.timer > 65200):
+                self.ob43.left(7)
+            if(self.timer > 66400):
+                self.ob44.left(7)
+            if(self.timer > 70000):
+                self.ob45.left(7)
+            if(self.timer > 71200):
+                self.ob46.left(7)
+            if(self.timer > 72400):
+                self.ob47.left(7)
+            if(self.timer > 74800):
+                self.ob48.left(7)
+            if(self.timer > 76000):
+                self.ob49.left(7)
+            if(self.timer > 77200):
+                self.ob50.left(7)
+            if(self.timer > 79400):
+                self.ob51.left(7)
+            if(self.timer > 80800):
+                self.ob52.left(7)
+            if(self.timer > 84400):
+                self.ob53.left(7)
+            if(self.timer > 85600):
+                self.ob54.left(7)
+            if(self.timer > 86800):
+                self.ob55.left(7)
+            if(self.timer > 88000):
+                self.ob56.left(7)
+            if(self.timer > 89200):
+                self.ob57.left(7)
+            if(self.timer > 90400):
+                self.ob58.left(7)
+            if(self.timer > 94000):
+                self.ob59.left(7)
+            if(self.timer > 95200):
+                self.ob60.left(7)
+            if(self.timer > 96400):
+                self.ob61.left(7)
+            if(self.timer > 98600):
+                self.ob62.left(7)
+            if(self.timer > 102200):
+                self.ob63.left(7)
+            if(self.timer > 103400):
+                self.ob64.left(7)
+            if(self.timer > 104600):
+                self.ob65.left(7)
+            if(self.timer > 105800):
+                self.ob66.left(7)
+            if(self.timer > 108200):
+                self.ob67.left(7)
+            if(self.timer > 109400):
+                self.ob68.left(7)
+            if(self.timer > 111800):
+                self.ob69.left(7)
+            if(self.timer > 113000):
+                self.ob70.left(7)
+            if(self.timer > 114200):
+                self.ob71.left(7)
+            if(self.timer > 115400):
+                self.ob72.left(7)
+            if(self.timer > 119000):
+                self.ob73.left(7)
+            if(self.timer > 120200):
+                self.ob74.left(7)
+            if(self.timer > 121400):
+                self.ob75.left(7)
+            if(self.timer > 122600):
+                self.ob76.left(7)
+            if(self.timer > 123800):
+                self.ob77.left(7)
+            if(self.timer > 125000):
+                self.ob78.left(7)
+            if(self.timer > 128600):
+                self.ob79.left(7)
+            if(self.timer > 131000):
+                self.ob80.left(7)
+            if(self.timer > 133400):
+                self.ob81.left(7)
+            if(self.timer > 134600):
+                self.ob82.left(7)
+            if(self.timer > 135800):
+                self.ob83.left(7)
+            if(self.timer > 137000):
+                self.ob84.left(7)
+            if(self.timer > 138200):
+                self.ob85.left(7)
+            if(self.timer > 139400):
+                self.ob86.left(7)
+            if(self.timer > 140600):
+                self.ob87.left(7)
+            if(self.timer > 144200):
+                self.ob88.left(7)
+            if(self.timer > 145400):
+                self.ob89.left(7)
+            if(self.timer > 146600):
+                self.ob90.left(7)
+            if(self.timer > 147800):
+                self.ob91.left(7)
+            if(self.timer > 150200):
+                self.ob92.left(7)
+            if(self.timer > 151400):
+                self.ob93.left(7)
+            if(self.timer > 152600):
+                self.ob94.left(7)
+            if(self.timer > 153800):
+                self.ob95.left(7)
+            if(self.timer > 156000):
+                self.ob96.left(7)
+            if(self.timer > 159600):
+                self.ob97.left(7)
+            if(self.timer > 160800):
+                self.ob98.left(7)
+            if(self.timer > 162000):
+                self.ob99.left(7)
+            if(self.timer > 163200):
+                self.ob100.left(7)
+            if(self.timer > 164400):
+                self.ob101.left(7)
+            if(self.timer > 165600):
+                self.ob102.left(7)
+            if(self.timer > 168000):
+                self.ob103.left(7)
+            if(self.timer > 170400):
+                self.ob104.left(7)
+            if(self.timer > 171600):
+                self.ob105.left(7)
+            if(self.timer > 172800):
+                self.ob106.left(7)
+            if(self.timer > 174000):
+                self.ob107.left(7)
+            if(self.timer > 177600):
+                self.ob108.left(7)
+            if(self.timer > 178800):
+                self.ob109.left(7)
+            if(self.timer > 180000):
+                self.ob110.left(7)
+            if(self.timer > 181200):
+                self.ob111.left(7)
+            if(self.timer > 182400):
+                self.ob112.left(7)
+            if(self.timer > 183600):
+                self.ob113.left(7)
+            if(self.timer > 184800):
+                self.ob114.left(7)
+            if(self.timer > 186000):
+                self.ob115.left(7)
+            if(self.timer > 188400):
+                self.ob116.left(7)
+            if(self.timer > 192000):
+                self.ob117.left(7)
+            if(self.timer > 193200):
+                self.ob118.left(7)
+            if(self.timer > 194400):
+                self.ob119.left(7)
+            if(self.timer > 196600):
+                self.ob120.left(7)
+            if(self.timer > 198800):
+                self.ob121.left(7)
+            if(self.timer > 200000):
+                self.ob122.left(7)
+            if(self.timer > 201200):
+                self.ob123.left(7)
+            if(self.timer > 202400):
+                self.ob124.left(7)
+            if(self.timer > 203600):
+                self.ob125.left(7)
+            if(self.timer > 204800):
+                self.ob126.left(7)
+            if(self.timer > 206000):
+                self.ob127.left(7)
+            if(self.timer > 207200):
+                self.ob128.left(7)
+            if(self.timer > 208400):
+                self.ob129.left(7)
+            if(self.timer > 209600):
+                self.ob130.left(7)
+            if(self.timer > 210800):
+                self.ob131.left(7)
+            if(self.timer > 212000):
+                self.ob132.left(7)
+            if(self.timer > 213200):
+                self.ob133.left(7)
+            if (self.timer > 500) and (self.timer<1055):
+                self.firstinstruct=self.myfonter.render("M83 - MIDNIGHT CITY ", 1, (156,254,149))
+                self.gameDisplay.blit(self.firstinstruct, (50, 400))
+            if (self.timer>1055 and self.timer<2000):
+                self.firstinstruct=self.myfonter.render("PRESS SPACE TO JUMP OVER THE BLOCKS", 1, (156,254,149))
+                self.gameDisplay.blit(self.firstinstruct, (50, 400))
+            if (self.timer>2500 and self.timer<3000):
+                self.firstinstruct=self.myfonter.render("READY!", 1, (156,254,149))
+                self.gameDisplay.blit(self.firstinstruct, (50, 400))
+            if (self.timer>3000 and self.timer<3500):
+                self.firstinstruct=self.myfonter.render(" SET! ", 1, (156,254,149))
+                self.gameDisplay.blit(self.firstinstruct, (50, 400))
+            if (self.timer>3500 and self.timer<4000):
+                self.firstinstruct=self.myfonter.render(" GO! ", 1, (156,254,149))
+                self.gameDisplay.blit(self.firstinstruct, (50, 400))
 
-    pygame.sprite.spritecollide(player, spritesgroup, True)
-    if (blocks_hit_list!=[]):
-        score+=10
-        y=str(score)
-        #print(score)
-        #print(y)
-    if (player_hit_list !=[]):
-        score-=5
-        y=str(score)
-    score1=myfont.render(y, 1, (156,254,149))
-    gameDisplay.blit(score1,(300, 50))
-    label = myfont.render("YOUR CURRENT SCORE IS:", 1, (160,243,252))
-    gameDisplay.blit(label, (300, 0))
-    if int(y)>int(b):
-        b=y
-    if (timer>223200 and timer<233200):
-        if b==y:
-            first=myfont.render("NEW HIGH SCORE!", 1, (156,254,149))
-            gameDisplay.blit(first, (50, 400))
-            scorefile=open("m83scores.txt", "w")
-            b=str(b)
-            scorefile.write(b)
-            scorefile.close()
-        else:
-            b=str(b)
-            highscores=("ALL TIME HIGH SCORE IS " + b)
-            first=myfont.render(highscores, 1, (156,254,149))
-            gameDisplay.blit(first, (50, 400))
-            scorefile=open("m83scores.txt", "w")
-            scorefile.write(b)
-            scorefile.close()
 
-pygame.quit() #unintiliazes pygames
+            self.blocks_hit_list = pygame.sprite.spritecollide(self.pointo, self.spritesgroup, True)
+            self.player_hit_list =  pygame.sprite.spritecollide(self.player, self.spritesgroup, True)
+
+            pygame.sprite.spritecollide(self.player, self.spritesgroup, True)
+            if (self.blocks_hit_list!=[]):
+                self.score+=10
+                self.y=str(self.score)
+                #print(score)
+                #print(y)
+            if (self.player_hit_list !=[]):
+                self.score-=5
+                self.y=str(self.score)
+            self.score1=self.myfont.render(self.y, 1, (156,254,149))
+            self.gameDisplay.blit(self.score1,(300, 50))
+            self.label = self.myfont.render("YOUR CURRENT SCORE IS:", 1, (160,243,252))
+            self.gameDisplay.blit(self.label, (300, 0))
+            if int(self.y)>int(self.b):
+                self.b=self.y
+            if (self.timer>223200 and self.timer<233200):
+                if self.b==self.y:
+                    self.first=self.myfont.render("NEW HIGH SCORE!", 1, (156,254,149))
+                    self.gameDisplay.blit(self.first, (50, 400))
+                    self.scorefile=open("m83scores.txt", "w")
+                    self.b=str(self.b)
+                    self.scorefile.write(self.b)
+                    self.scorefile.close()
+                else:
+                    self.b=str(self.b)
+                    self.highscores=("ALL TIME HIGH SCORE IS " + self.b)
+                    self.first=self.myfont.render(self.highscores, 1, (156,254,149))
+                    self.gameDisplay.blit(self.first, (50, 400))
+                    self.scorefile=open("m83scores.txt", "w")
+                    self.scorefile.write(self.b)
+                    self.scorefile.close()
+
+        pygame.quit() #unintiliazes pygames
+
+def main():
+    Controller()
+main()
 
 with open("menu.py") as f:
     code = compile(f.read(), "menu.py", 'exec')
-    exec(code)
+    exec(code) #this will exit out of python
