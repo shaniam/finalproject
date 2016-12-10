@@ -8,7 +8,7 @@ import os
 import math
 
 class selfMenu(ShowBase):
-    def __init__(self): #Ryan
+    def __init__(self):
         """Creates initial window"""
         # Set up the window, camera, etc.
         ShowBase.__init__(self)
@@ -17,11 +17,11 @@ class selfMenu(ShowBase):
         #Loads the world
         self.newScreen()
 
-    def setKey(self, key, value): #Ryan/Lesly
+    def setKey(self, key, value):
         """Binds moving actions to keys"""
         self.keyMap[key] = value
 
-    def move(self, task): #Ryan/Lesly
+    def move(self, task):
         """Moves actor around and gets camera to follow"""
 
         #Time since the last frame was called
@@ -77,7 +77,7 @@ class selfMenu(ShowBase):
 
         return task.cont
 
-    def collisionevent(self,name,startx,starty,iterations): #Lesly
+    def collisionevent(self,name,startx,starty,iterations):
         """Triggers an event upon a collision"""
         xnames=["castle","tepee","fifthline","seventhline"]
         ynames=["house","halloffame","sixthline","eighthline"]
@@ -112,7 +112,7 @@ class selfMenu(ShowBase):
             if name in outsidenames:
                 self.moore.setPos(0,0,0)
 
-    def secondWindow(self,name): #Lesly
+    def secondWindow(self,name):
         #secondwindowcode, after level code based on level
         if name=='castle':
             self.music.stop()
@@ -135,7 +135,7 @@ class selfMenu(ShowBase):
         if name=='halloffame':
             print("")
 
-    def startMusic(self): #Ryan
+    def startMusic(self):
         """Starts and stops music"""
         if self.music:
             self.music.stop()
@@ -145,7 +145,7 @@ class selfMenu(ShowBase):
             self.music.play()
 
 
-    def newScreen(self): #Ryan
+    def newScreen(self):
         """Creates screen with world model and actors"""
 
         #Loads world model
@@ -205,13 +205,13 @@ class selfMenu(ShowBase):
         self.accept("escape", sys.exit)
 
 
-    def addInstructions(self, pos, msg, font): #Ryan
+    def addInstructions(self, pos, msg, font):
         """Posts instructions on screen"""
         return OnscreenText(text=msg, style=1, font=font, fg=(1, 1, 1, 1), scale=.05,
                             shadow=(0, 0, 0, 1), parent=base.a2dTopLeft,
                             pos=(0.08, -pos - 0.04), align=TextNode.ALeft)
 
-    def addTitle(self, text, font): #Ryan
+    def addTitle(self, text, font):
         """Posts title on screen"""
         return OnscreenText(text=text, style=1, font=font, fg=(1, 1, 1, 1), scale=.07,
                             parent=base.a2dBottomRight, align=TextNode.ARight,

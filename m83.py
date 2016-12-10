@@ -195,7 +195,7 @@ class Controller:
         while not self.gameExit:
             self.clock.tick(40)
             self.timer = pygame.time.get_ticks()
-            #print(timer)
+            print(self.timer)
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
                     self.gameExit=True
@@ -494,19 +494,19 @@ class Controller:
                 self.ob132.left(7)
             if(self.timer > 213200):
                 self.ob133.left(7)
-            if (self.timer > 500) and (self.timer<1055):
+            if (self.timer > 500) and (self.timer<5000):
                 self.firstinstruct=self.myfonter.render("M83 - MIDNIGHT CITY ", 1, (156,254,149))
                 self.gameDisplay.blit(self.firstinstruct, (50, 400))
-            if (self.timer>1055 and self.timer<2000):
+            if (self.timer > 5100) and (self.timer<15100):
                 self.firstinstruct=self.myfonter.render("PRESS SPACE TO JUMP OVER THE BLOCKS", 1, (156,254,149))
                 self.gameDisplay.blit(self.firstinstruct, (50, 400))
-            if (self.timer>2500 and self.timer<3000):
+            if (self.timer > 15200) and (self.timer<16200):
                 self.firstinstruct=self.myfonter.render("READY!", 1, (156,254,149))
                 self.gameDisplay.blit(self.firstinstruct, (50, 400))
-            if (self.timer>3000 and self.timer<3500):
+            if (self.timer>16250 and self.timer<17200):
                 self.firstinstruct=self.myfonter.render(" SET! ", 1, (156,254,149))
                 self.gameDisplay.blit(self.firstinstruct, (50, 400))
-            if (self.timer>3500 and self.timer<4000):
+            if (self.timer>17250 and self.timer<18200):
                 self.firstinstruct=self.myfonter.render(" GO! ", 1, (156,254,149))
                 self.gameDisplay.blit(self.firstinstruct, (50, 400))
 
@@ -529,7 +529,7 @@ class Controller:
             self.gameDisplay.blit(self.label, (300, 0))
             if int(self.y)>int(self.b):
                 self.b=self.y
-            if (self.timer>223200 and self.timer<233200):
+            if (self.timer>232000 and self.timer<237000):
                 if self.b==self.y:
                     self.first=self.myfont.render("NEW HIGH SCORE!", 1, (156,254,149))
                     self.gameDisplay.blit(self.first, (50, 400))
@@ -545,6 +545,9 @@ class Controller:
                     self.scorefile=open("m83scores.txt", "w")
                     self.scorefile.write(self.b)
                     self.scorefile.close()
+            if(self.timer >237100):
+                    self.first=self.myfont.render("PRESS RETURN TO EXIT TO THE MAIN SCREEN", 1, (156,254,149))
+                    self.gameDisplay.blit(self.first, (50, 400))
 
         pygame.quit() #unintiliazes pygames
 

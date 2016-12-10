@@ -10,6 +10,7 @@ gameDisplay= pygame.display.set_mode((800, 600))
 bg=pygame.image.load('clouds_converted.jpg')
 moore=pygame.image.load("baemoore_converted.png")
 myfont = pygame.font.SysFont("Extrude.ttf", 30)
+myfonter =pygame.font.SysFont("AldotheApache",60)
 jump = False
 fall = False
 
@@ -799,6 +800,21 @@ while not gameExit:
 
     label = myfont.render("YOUR CURRENT SCORE IS:", 1, (160,243,252))
     gameDisplay.blit(label, (300, 0))
+    if (timer > 500) and (timer<5000):
+        firstinstruct=myfonter.render("TWENTY ONE PILOTS - HOMETOWN ", 1, (156,254,149))
+        gameDisplay.blit(firstinstruct, (50, 400))
+    if (timer > 5100) and (timer<13100):
+        firstinstruct=myfonter.render("PRESS SPACE TO JUMP OVER THE BLOCKS", 1, (156,254,149))
+        gameDisplay.blit(firstinstruct, (50, 400))
+    if (timer > 13200) and (timer<14200):
+        firstinstruct=myfonter.render("READY!", 1, (156,254,149))
+        gameDisplay.blit(firstinstruct, (50, 400))
+    if (timer>14250 and timer<15200):
+        firstinstruct=myfonter.render(" SET! ", 1, (156,254,149))
+        gameDisplay.blit(firstinstruct, (50, 400))
+    if (timer>15250 and timer<16200):
+        firstinstruct=myfonter.render(" GO! ", 1, (156,254,149))
+        gameDisplay.blit(firstinstruct, (50, 400))
 
 
     if int(y)>int(b):

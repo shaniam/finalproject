@@ -1187,6 +1187,19 @@ while not gameExit:
     gameDisplay.blit(score1,(300, 50))
     label = myfont.render("YOUR CURRENT SCORE IS:", 1, (160,243,252))
     gameDisplay.blit(label, (300, 0))
+    if (timer > 500) and (timer<4000):
+        firstinstruct=myfonter.render("MARIAH CAREY - ALL I WANT FOR CHRISTMAS IS YOU ", 1, (156,254,149))
+        gameDisplay.blit(firstinstruct, (50, 400))
+    if (timer > 4100) and (timer<5100):
+        firstinstruct=myfonter.render("READY!", 1, (156,254,149))
+        gameDisplay.blit(firstinstruct, (50, 400))
+    if (timer>5200 and timer<6200):
+        firstinstruct=myfonter.render(" SET! ", 1, (156,254,149))
+        gameDisplay.blit(firstinstruct, (50, 400))
+    if (timer>6300 and timer<7300):
+        firstinstruct=myfonter.render(" GO! ", 1, (156,254,149))
+        gameDisplay.blit(firstinstruct, (50, 400))
+
     if int(y)>int(b):
         b=y
     if (timer>230000 and timer<240000):
