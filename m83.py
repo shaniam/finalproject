@@ -3,7 +3,7 @@ import pygame
 import os
 import time
 
-class Controller:
+class mController:
     def __init__(self):
         pygame.init() #short for initialize does return a tuple of successful intilizaton
         colors={"black":(0,0,0), "white": (255, 255, 255), "red": (255, 0, 0), "green": (0, 255, 0), "purple": (164, 66, 244), "pink" :(252, 25, 123)}
@@ -12,7 +12,7 @@ class Controller:
         self.bg=pygame.image.load('clouds_converted.jpg')
         self.moore=pygame.image.load("baemoore_converted.png")
         self.myfont = pygame.font.SysFont("Extrude", 30)
-        self.myfonter =pygame.font.SysFont("AldotheApache",60)
+        self.myfonter =pygame.font.SysFont("AldotheApache",45)
 
         self.jump = False
         self.fall = False
@@ -496,19 +496,19 @@ class Controller:
                 self.ob133.left(7)
             if (self.timer > 500) and (self.timer<5000):
                 self.firstinstruct=self.myfonter.render("M83 - MIDNIGHT CITY ", 1, (156,254,149))
-                self.gameDisplay.blit(self.firstinstruct, (50, 400))
+                self.gameDisplay.blit(self.firstinstruct, (275, 300))
             if (self.timer > 5100) and (self.timer<15100):
                 self.firstinstruct=self.myfonter.render("PRESS SPACE TO JUMP OVER THE BLOCKS", 1, (156,254,149))
-                self.gameDisplay.blit(self.firstinstruct, (50, 400))
+                self.gameDisplay.blit(self.firstinstruct, (50, 300))
             if (self.timer > 15200) and (self.timer<16200):
                 self.firstinstruct=self.myfonter.render("READY!", 1, (156,254,149))
-                self.gameDisplay.blit(self.firstinstruct, (50, 400))
+                self.gameDisplay.blit(self.firstinstruct, (350, 300))
             if (self.timer>16250 and self.timer<17200):
                 self.firstinstruct=self.myfonter.render(" SET! ", 1, (156,254,149))
-                self.gameDisplay.blit(self.firstinstruct, (50, 400))
+                self.gameDisplay.blit(self.firstinstruct, (350, 300))
             if (self.timer>17250 and self.timer<18200):
                 self.firstinstruct=self.myfonter.render(" GO! ", 1, (156,254,149))
-                self.gameDisplay.blit(self.firstinstruct, (50, 400))
+                self.gameDisplay.blit(self.firstinstruct, (350, 300))
 
 
             self.blocks_hit_list = pygame.sprite.spritecollide(self.pointo, self.spritesgroup, True)
@@ -518,15 +518,13 @@ class Controller:
             if (self.blocks_hit_list!=[]):
                 self.score+=10
                 self.y=str(self.score)
-                #print(score)
-                #print(y)
             if (self.player_hit_list !=[]):
                 self.score-=5
                 self.y=str(self.score)
             self.score1=self.myfont.render(self.y, 1, (156,254,149))
-            self.gameDisplay.blit(self.score1,(300, 50))
+            self.gameDisplay.blit(self.score1,(600, 50))
             self.label = self.myfont.render("YOUR CURRENT SCORE IS:", 1, (160,243,252))
-            self.gameDisplay.blit(self.label, (300, 0))
+            self.gameDisplay.blit(self.label, (300, 50))
             if int(self.y)>int(self.b):
                 self.b=self.y
             if (self.timer>232000 and self.timer<237000):
@@ -546,15 +544,12 @@ class Controller:
                     self.scorefile.write(self.b)
                     self.scorefile.close()
             if(self.timer >237100):
-                    self.first=self.myfont.render("PRESS RETURN TO EXIT TO THE MAIN SCREEN", 1, (156,254,149))
+                    self.first=self.myfont.render("PRESS RETURN TO EXIT PROGRAM", 1, (156,254,149))
                     self.gameDisplay.blit(self.first, (50, 400))
 
         pygame.quit() #unintiliazes pygames
+        quit()
 
 def main():
-    Controller()
+    mController()
 main()
-
-with open("menu.py") as f:
-    code = compile(f.read(), "menu.py", 'exec')
-    exec(code) #this will exit out of python

@@ -1,38 +1,254 @@
+from direct.showbase.ShowBase import ShowBase
+from panda3d.core import TextNode, PandaNode, NodePath, GeomNode, LineSegs
+from direct.gui.OnscreenText import OnscreenText
+from direct.actor.Actor import Actor
 from models import ourMusic, sprites
-import pygame
+import random
+import sys
 import os
-import time
+import math
 
-class christmasController:
+class selfMenu(ShowBase):
+    def __init__(self):
+        """Creates initial window"""
+        # Set up the window, camera, etc.
+        ShowBase.__init__(self)
+        # Set the background color to black
+        self.win.setClearColor((0, 0, 0, 1))
+        #Loads the world
+        self.newScreen()
+
+    def setKey(self, key, value):
+        """Binds moving actions to keys"""
+        self.keyMap[key] = value
+
+    def move(self, task):
+        """Moves actor around and gets camera to follow"""
+
+        #Time since the last frame was called
+        dt = globalClock.getDt()
+
+        # If a move-key is pressed, move moore in the specified direction.
+        if self.keyMap["left"]:
+            self.moore.setH(self.moore.getH() + 300 * dt)
+        if self.keyMap["right"]:
+            self.moore.setH(self.moore.getH() - 300 * dt)
+        if self.keyMap["forward"]:
+            self.moore.setY(self.moore, -25 * dt)
+
+        # If Moore is moving, loop the run animation.
+        # If he is standing still, stop the animation.
+
+        if self.keyMap["forward"] or self.keyMap["left"] or self.keyMap["right"]:
+            if self.isMoving is False:
+                self.moore.loop("run")
+                self.isMoving = True
+        else:
+            if self.isMoving:
+                self.moore.stop()
+                self.moore.pose("walk", 5)
+                self.isMoving = False
+
+        # If the camera is too far from Moore, move it closer.
+        # If the camera is too close to Moore, move it farther.
+        # Camera set far away so that it does not dip under the model
+
+        camvec = self.moore.getPos() - self.camera.getPos()
+        camdist = camvec.length()
+        camvec.normalize()
+        if camdist > 28.0:
+            self.camera.setPos(self.camera.getPos() + camvec * (camdist - 28))
+            camdist = 28.0
+        if camdist < 3.0:
+            self.camera.setPos(self.camera.getPos() - camvec * (3 - camdist))
+            camdist = 3.0
+
+        self.camera.lookAt(self.floater)
+
+
+        # Makes lines that Moore can collide with to trigger an event
+        self.collisionevent('castle',-5,-80,10)
+        self.collisionevent('house',-70,-10,20)
+        self.collisionevent('tepee',-10,115, 10)
+        self.collisionevent('halloffame',55,-10,10)
+        self.collisionevent('fifthline',-200,180,320)
+        self.collisionevent('sixthline',120,-188,368)
+        self.collisionevent('seventhline',-200,-188,320)
+        self.collisionevent('eighthline',-200,-188,368)
+
+        return task.cont
+
+    def collisionevent(self,name,startx,starty,iterations):
+        """Triggers an event upon a collision"""
+        xnames=["castle","tepee","fifthline","seventhline"]
+        ynames=["house","halloffame","sixthline","eighthline"]
+        levelnames=['castle','house','tepee','halloffame']
+        outsidenames=['fifthline','sixthline','seventhline','eighthline']
+        self.name=LineSegs(name)
+        self.name.moveTo(startx,starty,0)
+        x=startx
+        y=starty
+        for i in range(iterations):
+            self.name.drawTo(x,y,0)
+            if name in xnames:
+                x+=1
+            if name in ynames:
+                y+=1
+        self.name.create()
+        vertexlist=self.name.getVertices()
+
+        coorlist=[]
+
+        for i in range(len(vertexlist)):
+            coorlist.append([vertexlist[i][0],vertexlist[i][1]])
+
+
+        moorecoor= [int(self.moore.getX()),int(self.moore.getY())]
+
+        if (moorecoor in coorlist):
+            if name in levelnames:
+                base.graphicsEngine.removeWindow(self.win)
+                self.secondWindow(name)
+
+            if name in outsidenames:
+                self.moore.setPos(0,0,0)
+
+    def secondWindow(self,name):
+        #secondwindowcode, after level code based on level
+        if name=='castle':
+            self.music.stop()
+            self.test = Controller()
+
+        if name=='house':
+            self.music.stop()
+            with open("hometown.py") as f:
+                code = compile(f.read(), "hometown.py", 'exec')
+                exec(code)
+
+        if name=='tepee':
+            self.music.stop()
+            with open("m83.py") as f:
+                code = compile(f.read(), "m83.py", 'exec')
+                exec(code)
+
+        if name=='halloffame':
+            print("")
+
+    def startMusic(self):
+        """Starts and stops music"""
+        if self.music:
+            self.music.stop()
+            self.music = None
+        else:
+            self.music = self.loader.loadMusic("phase/gunsforhands.ogg")
+            self.music.play()
+
+
+    def newScreen(self):
+        """Creates screen with world model and actors"""
+
+        #Loads world model
+        self.world = loader.loadModel("phase/trialworld.bam")
+        self.world.reparentTo(render)
+        #Loads the font
+        self.font = loader.loadFont("phase/LemonMilk.ttf")
+
+
+        self.keyMap = {
+            "left": 0, "right": 0, "forward": 0, "cam-left": 0, "cam-right": 0}
+        #Loads actor and animations
+        mooreStartPos = (0,0,0)
+        self.moore = Actor("phase/ralph",
+                           {"run": "phase/ralph-run",
+                            "walk": "phase/ralph-walk"})
+        self.moore.reparentTo(render)
+        self.moore.setScale(.2)
+        self.moore.setPos(mooreStartPos)
+        # Loads a floater above Moore's head to point the camera at
+        self.floater = NodePath(PandaNode("floater"))
+        self.floater.reparentTo(self.moore)
+
+        #Controls for moving actor around
+        self.accept("a", self.setKey, ["left", True])
+        self.accept("d", self.setKey, ["right", True])
+        self.accept("w", self.setKey, ["forward", True])
+        self.accept("a-up", self.setKey, ["left", False])
+        self.accept("d-up", self.setKey, ["right", False])
+        self.accept("w-up", self.setKey, ["forward", False])
+
+        taskMgr.add(self.move, "moveTask")
+
+        self.isMoving = False
+
+        # Set up the camera
+        # Disables the mouse from moving the scren
+        self.disableMouse()
+        self.camera.setPos(self.moore.getX(), self.moore.getY()+10, self.moore.getZ()+2)
+
+        # Loads the music file
+        self.music = self.loader.loadMusic("phase/gunsforhands.ogg")
+        # Plays the music
+        self.music.play()
+        # Starts/stops music
+        self.accept("m-up", self.startMusic)
+        # Creates a title
+        self.title = self.addTitle("Moore's World: The Best World", self.font)
+        # Creates the instructions
+        self.inst1 = self.addInstructions(0.06, "ESC: Quit", self.font)
+        self.inst5 = self.addInstructions(0.12, "M: Enable/Disable Music", self.font)
+        self.inst2 = self.addInstructions(0.18, "CONTROLS: W/A/D", self.font)
+        self.inst5 = self.addInstructions(0.24, "TEPEE: EASY", self.font)
+        self.inst5 = self.addInstructions(0.30, "HOUSE: MEDIUM", self.font)
+        self.inst5 = self.addInstructions(0.36, "CASTLE: HARD", self.font)
+        # Exits the program
+        self.accept("escape", sys.exit)
+
+
+    def addInstructions(self, pos, msg, font):
+        """Posts instructions on screen"""
+        return OnscreenText(text=msg, style=1, font=font, fg=(1, 1, 1, 1), scale=.05,
+                            shadow=(0, 0, 0, 1), parent=base.a2dTopLeft,
+                            pos=(0.08, -pos - 0.04), align=TextNode.ALeft)
+
+    def addTitle(self, text, font):
+        """Posts title on screen"""
+        return OnscreenText(text=text, style=1, font=font, fg=(1, 1, 1, 1), scale=.07,
+                            parent=base.a2dBottomRight, align=TextNode.ARight,
+                            pos=(-0.1, 0.09), shadow=(0, 0, 0, 1))
+
+def main():
+    """Runs program"""
+    demo = selfMenu()
+    demo.run()
+
+main()
+
+class Controller:
     def __init__(self):
         pygame.init() #short for initialize does return a tuple of successful intilizaton
-        self.colors={"black":(0,0,0), "white": (255, 255, 255), "red": (255, 0, 0), "green": (0, 255, 0), "purple": (164, 66, 244), "pink" :(252, 25, 123)} #dictionary of common colors
-        self.gameDisplay= pygame.display.set_mode((800, 600))#sets up a game window with correct size
+        self.colors={"black":(0,0,0), "white": (255, 255, 255), "red": (255, 0, 0), "green": (0, 255, 0), "purple": (164, 66, 244), "pink" :(252, 25, 123)}
+        self.gameDisplay= pygame.display.set_mode((800, 600))
 
-        self.bg=pygame.image.load('hellokittypretty.jpg') #loads images
+        self.bg=pygame.image.load('clouds_converted.jpg')
         self.moore=pygame.image.load("baemoore_converted.png")
-        self.myfont = pygame.font.SysFont("Extrude.ttf", 30) #loads fonts with desired font sizes
-        self.myfonter =pygame.font.SysFont("AldotheApache.ttf",45)
-        self.myfonter1 =pygame.font.SysFont("AldotheApache.ttf",35)
-
-        self.jump = False #intitializes the 'jump' as false
-        self.fall = False #intializes the 'fall' as false
+        self.myfont = pygame.font.SysFont("Extrude.ttf", 30)
+        self.myfonter =pygame.font.SysFont("AldotheApache.ttf",60)
+        self.jump = False
+        self.fall = False
 
 
-        self.cube = pygame.image.load("cube.png") #loads image
-        self.pointo=sprites(self.cube, -10, 580) #the obsacles will hit this if the player jumps over the obs. this will be used to detect what is jumped over
-        self.pointo.pos() # puts the detecting cube position off screen
-        self.player=sprites(self.moore, 50, 544) #sets an intilial position for the player
+        self.cube = pygame.image.load("cube.png")
+        self.pointo=sprites(self.cube, -10, 580) #the cube it will hit
+        self.pointo.pos()
+        self.player=sprites(self.moore, 50, 544)
 
-        self.score=0 #intializes score at 0
-        self.scorestring=str(self.score) #y represents the string version of score so that we
-        self.scorething=open("christmasscores.txt", "r") #reads the score file
-        self.scoresentence=self.scorething.readline() #interprets the line list
-        self.bhighscore=self.scoresentence.strip() #removes white space to obtain only the score
-        self.bhighscore=int(self.b) #turns the score into a string
+        self.score=0
+        self.y=str(self.score)
+        self.scorething=open("christmasscores.txt", "r")
+        self.scoresentence=self.scorething.readline()
+        self.b=self.scoresentence.strip()
+        self.b=int(self.b)
         self.scorething.close()
-
-        #creates obstacle sprites
 
         self.ob = sprites(self.cube, 4400, 580)
         self.ob1 = sprites(self.cube, 4400, 580)
@@ -386,16 +602,16 @@ class christmasController:
         self.ob349 = sprites(self.cube, 4400, 580)
 
 
-        pygame.display.set_caption("let's play!") #header
-        self.theSong=ourMusic("christmas.ogg") #passes the song
-        self.theSong.musicUpload() #uploads music
-        self.theSong.musicPlay() #loops music
-        self.gameExit = False #sets gamExit to false so that the game loop can be initialized as true
-        self.clock = pygame.time.Clock() #keeps track of ticks
+        pygame.display.set_caption("lets play!")
+        self.theSong=ourMusic("christmas.ogg")
+        self.theSong.musicUpload()
+        self.theSong.musicPlay()
+        self.gameExit = False
+        self.clock = pygame.time.Clock()
 
 
 
-        self.spritesGroup=pygame.sprite.Group() #sprite group
+        self.spritesGroup=pygame.sprite.Group()
         self.spritesGroup.add(self.ob, self.ob1, self.ob2, self.ob3, self.ob4, self.ob5, self.ob6, self.ob7, self.ob8, self.ob9, self.ob10,
                         self.ob11, self.ob12, self.ob13, self.ob14, self.ob15, self.ob16, self.ob17, self.ob18, self.ob19, self.ob20,
                         self.ob21, self.ob22, self.ob23, self.ob24, self.ob25, self.ob26, self.ob27, self.ob28, self.ob29, self.ob30,
@@ -435,19 +651,30 @@ class christmasController:
                         self.ob345, self.ob346, self.ob347, self.ob348, self.ob349)
 
         self.score=0
-        self.scorestring=str(self.score)
+        self.y=str(self.score)
 
-        while not self.gameExit: #intitializes true
-            self.clock.tick(40) #limits 40 frames per tick
-            self.timer = pygame.time.get_ticks() #ticks
+        while not self.gameExit:
+            self.clock.tick(40)
+            self.timer = pygame.time.get_ticks()
+            print(self.timer)
             for event in pygame.event.get():
-                if event.type==pygame.QUIT: #exits
+                if event.type==pygame.QUIT:
                     self.gameExit=True
-                if event.type == pygame.KEYDOWN: #events based on keys
+                if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
-                        if not self.fall: #allows jump
+                        if not self.fall:
+                            print("************************HELLO************************")
+                            print("************************HELLO************************")
+                            print("************************HELLO************************")
+                            print("************************HELLO************************")
+                            print("************************HELLO************************")
+                            print("************************HELLO************************")
+                            print("************************HELLO************************")
+                            print("************************HELLO************************")
+                            print("************************HELLO************************")
+                            print("************************HELLO************************")
                             self.jump = True
-                    if event.key == pygame.K_RETURN: #exit
+                    if event.key == pygame.K_RETURN:
                         self.gameExit= True
             if self.jump:
                 self.player.rect.y -= 65
@@ -1173,54 +1400,49 @@ class christmasController:
             pygame.sprite.spritecollide(self.player, self.spritesGroup, True)
             if (self.blocks_hit_list != [] or self.blocks_hit_list1 != []):
                 self.score+=10
-                self.scorestring=str(self.score)
+                self.y=str(self.score)
             if (self.player_blocks_hit_list != [] or self.player_blocks_hit_list1 != []):
                 self.score-=5
-                self.scorestring=str(self.score)
-            self.score1=self.myfont.render(self.scorestring, 1, (self.colors["black"]))
-            self.gameDisplay.blit(self.score1,(600, 50))
-            self.label = self.myfont.render("YOUR CURRENT SCORE IS:", 1, (self.colors["black"]))
-            self.gameDisplay.blit(self.label, (300, 50))
+                self.y=str(self.score)
+            self.score1=self.myfont.render(self.y, 1, (156,254,149))
+            self.gameDisplay.blit(self.score1,(300, 50))
+            self.label = self.myfont.render("YOUR CURRENT SCORE IS:", 1, (160,243,252))
+            self.gameDisplay.blit(self.label, (300, 0))
             if (self.timer > 500) and (self.timer<4000):
-                self.firstinstruct=self.myfonter1.render("MARIAH CAREY - ALL I WANT FOR CHRISTMAS IS YOU ", 1, (self.colors["black"]))
-                self.gameDisplay.blit(self.firstinstruct, (50, 300))
+                self.firstinstruct=self.myfonter.render("MARIAH CAREY - ALL I WANT FOR CHRISTMAS IS YOU ", 1, (156,254,149))
+                self.gameDisplay.blit(self.firstinstruct, (50, 400))
             if (self.timer > 4100) and (self.timer<5100):
-                self.firstinstruct=self.myfonter.render("READY!", 1, (self.colors["black"]))
-                self.gameDisplay.blit(self.firstinstruct, (350, 300))
+                self.firstinstruct=self.myfonter.render("READY!", 1, (156,254,149))
+                self.gameDisplay.blit(self.firstinstruct, (50, 400))
             if (self.timer>5200 and self.timer<6200):
-                self.firstinstruct=self.myfonter.render(" SET! ", 1, (self.colors["black"]))
-                self.gameDisplay.blit(self.firstinstruct, (350, 300))
+                self.firstinstruct=self.myfonter.render(" SET! ", 1, (156,254,149))
+                self.gameDisplay.blit(self.firstinstruct, (50, 400))
             if (self.timer>6300 and self.timer<7300):
-                self.firstinstruct=self.myfonter.render(" GO! ", 1, (self.colors["black"]))
-                self.gameDisplay.blit(self.firstinstruct, (350, 300))
+                self.firstinstruct=self.myfonter.render(" GO! ", 1, (156,254,149))
+                self.gameDisplay.blit(self.firstinstruct, (50, 400))
 
-            if int(self.scorestring)>int(self.bhighscore):
-                self.bhighscore=self.scorestring
+            if int(self.y)>int(self.b):
+                self.b=self.y
             if (self.timer>230000 and self.timer<240000):
-                if self.bhighscore==self.scorestring:
+                if self.b==self.y:
                     self.first=self.myfont.render("NEW HIGH SCORE!", 1, (156,254,149))
                     self.gameDisplay.blit(self.first, (50, 400))
                     self.scorefile=open("christmasscores.txt", "w")
-                    self.bhighscore=str(self.bhighscore)
-                    self.scorefile.write(self.bhighscore)
+                    self.b=str(self.b)
+                    self.scorefile.write(self.b)
                     self.scorefile.close()
                 else:
-                    self.bhighscore=str(self.bhighscore)
-                    self.highscores=("ALL TIME HIGH SCORE IS " + self.bhighscore)
+                    self.b=str(self.b)
+                    self.highscores=("ALL TIME HIGH SCORE IS " + self.b)
                     self.first=self.myfont.render(self.highscores, 1, (156,254,149))
                     self.gameDisplay.blit(self.first, (50, 400))
                     self.scorefile=open("christmasscores.txt", "w")
-                    self.scorefile.write(self.bhighscore)
+                    self.scorefile.write(self.b)
                     self.scorefile.close()
             if (self.timer > 241000):
-                    self.first=self.myfont.render("PRESS RETURN TO EXIT PROGRAM!", 1, (156,254,149))
+                    self.first=self.myfont.render("PRESS RETURN TO EXIT TO THE MAIN SCREEN", 1, (156,254,149))
                     self.gameDisplay.blit(self.first, (50, 400))
 
             pygame.display.update()
 
-        pygame.quit() #unintiliazes pygames
-        quit()
-
-def main():
-    christmasController()
-main()
+        pygame.quit()

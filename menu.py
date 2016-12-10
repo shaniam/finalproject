@@ -68,8 +68,8 @@ class selfMenu(ShowBase):
         # Makes lines that Moore can collide with to trigger an event
         self.collisionevent('castle',-5,-80,10)
         self.collisionevent('house',-70,-10,20)
-        self.collisionevent('tepee',-10,115, 10)
-        self.collisionevent('halloffame',55,-10,10)
+        self.collisionevent('halloffame',-10,115, 10)
+        self.collisionevent('tepee',55,-10,10)
         self.collisionevent('fifthline',-200,180,320)
         self.collisionevent('sixthline',120,-188,368)
         self.collisionevent('seventhline',-200,-188,320)
@@ -79,8 +79,8 @@ class selfMenu(ShowBase):
 
     def collisionevent(self,name,startx,starty,iterations):
         """Triggers an event upon a collision"""
-        xnames=["castle","tepee","fifthline","seventhline"]
-        ynames=["house","halloffame","sixthline","eighthline"]
+        xnames=["castle","halloffame","fifthline","seventhline"]
+        ynames=["house","tepee","sixthline","eighthline"]
         levelnames=['castle','house','tepee','halloffame']
         outsidenames=['fifthline','sixthline','seventhline','eighthline']
         self.name=LineSegs(name)
@@ -116,24 +116,31 @@ class selfMenu(ShowBase):
         #secondwindowcode, after level code based on level
         if name=='castle':
             self.music.stop()
+            from christmas import hometownController
             with open("christmas.py") as f:
                 code = compile(f.read(), "christmas.py", 'exec')
                 exec(code)
 
         if name=='house':
             self.music.stop()
+            from hometown import christmasController
             with open("hometown.py") as f:
                 code = compile(f.read(), "hometown.py", 'exec')
                 exec(code)
 
         if name=='tepee':
             self.music.stop()
+            from m83 import mController
             with open("m83.py") as f:
                 code = compile(f.read(), "m83.py", 'exec')
                 exec(code)
 
         if name=='halloffame':
-            print("")
+            from highscores import highscoreController
+            with open("highscores.py") as f:
+                code = compile(f.read(), "highscores.py", 'exec')
+                exec(code)
+
 
     def startMusic(self):
         """Starts and stops music"""
