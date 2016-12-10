@@ -189,6 +189,72 @@ ob157 = sprites(cube, 10000, 580)
 ob158 = sprites(cube, 10000, 580)
 ob159 = sprites(cube, 10000, 580)
 ob160 = sprites(cube, 10000, 580)
+ob161 = sprites(cube, 10000, 580)
+ob162 = sprites(cube, 10000, 580)
+ob163 = sprites(cube, 10000, 580)
+ob164 = sprites(cube, 10000, 580)
+ob165 = sprites(cube, 10000, 580)
+ob166 = sprites(cube, 10000, 580)
+ob167 = sprites(cube, 10000, 580)
+ob168 = sprites(cube, 10000, 580)
+ob169 = sprites(cube, 10000, 580)
+ob170 = sprites(cube, 10000, 580)
+ob171 = sprites(cube, 10000, 580)
+ob172 = sprites(cube, 10000, 580)
+ob173 = sprites(cube, 10000, 580)
+ob174 = sprites(cube, 10000, 580)
+ob175 = sprites(cube, 10000, 580)
+ob176 = sprites(cube, 10000, 580)
+ob177 = sprites(cube, 10000, 580)
+ob178 = sprites(cube, 10000, 580)
+ob179 = sprites(cube, 10000, 580)
+ob180 = sprites(cube, 10000, 580)
+ob181 = sprites(cube, 10000, 580)
+ob182 = sprites(cube, 10000, 580)
+ob183 = sprites(cube, 10000, 580)
+ob184 = sprites(cube, 10000, 580)
+ob185 = sprites(cube, 10000, 580)
+ob186 = sprites(cube, 10000, 580)
+ob187 = sprites(cube, 10000, 580)
+ob188 = sprites(cube, 10000, 580)
+ob189 = sprites(cube, 10000, 580)
+ob190 = sprites(cube, 10000, 580)
+ob191 = sprites(cube, 10000, 580)
+ob192 = sprites(cube, 10000, 580)
+ob193 = sprites(cube, 10000, 580)
+ob194 = sprites(cube, 10000, 580)
+ob195 = sprites(cube, 10000, 580)
+ob196 = sprites(cube, 10000, 580)
+ob197 = sprites(cube, 10000, 580)
+ob198 = sprites(cube, 10000, 580)
+ob199 = sprites(cube, 10000, 580)
+ob200 = sprites(cube, 10000, 580)
+ob201 = sprites(cube, 10000, 580)
+ob202 = sprites(cube, 10000, 580)
+ob203 = sprites(cube, 10000, 580)
+ob204 = sprites(cube, 10000, 580)
+ob205 = sprites(cube, 10000, 580)
+ob206 = sprites(cube, 10000, 580)
+ob207 = sprites(cube, 10000, 580)
+ob208 = sprites(cube, 10000, 580)
+ob209 = sprites(cube, 10000, 580)
+ob210 = sprites(cube, 10000, 580)
+ob211 = sprites(cube, 10000, 580)
+ob212 = sprites(cube, 10000, 580)
+ob213 = sprites(cube, 10000, 580)
+ob214 = sprites(cube, 10000, 580)
+ob215 = sprites(cube, 10000, 580)
+ob216 = sprites(cube, 10000, 580)
+ob217 = sprites(cube, 10000, 580)
+ob218 = sprites(cube, 10000, 580)
+ob219 = sprites(cube, 10000, 580)
+ob220 = sprites(cube, 10000, 580)
+ob221 = sprites(cube, 10000, 580)
+ob222 = sprites(cube, 10000, 580)
+ob223 = sprites(cube, 10000, 580)
+ob224 = sprites(cube, 10000, 580)
+ob225 = sprites(cube, 10000, 580)
+ob226 = sprites(cube, 10000, 580)
 
 pygame.display.set_caption("lets play!")
 theSong=ourMusic("hometown.ogg")
@@ -215,7 +281,14 @@ spritesgroup.add(ob, ob1, ob2, ob3, ob4, ob5, ob6, ob7, ob8, ob9, ob10,
                  ob121, ob122, ob123, ob124, ob125, ob126, ob127, ob128, ob129, ob130,
                  ob131, ob132, ob133, ob134, ob135, ob136, ob137, ob138, ob139, ob140,
                  ob141, ob142, ob143, ob144, ob145, ob146, ob147, ob148, ob149, ob150,
-                 ob151, ob152, ob153, ob154, ob155, ob156, ob157, ob158, ob159, ob160)
+                 ob151, ob152, ob153, ob154, ob155, ob156, ob157, ob158, ob159, ob160,
+                 ob161, ob162, ob163, ob164, ob165, ob166, ob167, ob168, ob169, ob170,
+                 ob171, ob172, ob173, ob174, ob175, ob176, ob177, ob178, ob179, ob180,
+                 ob181, ob182, ob183, ob184, ob185, ob186, ob187, ob188, ob189, ob190,
+                 ob191, ob192, ob193, ob194, ob195, ob196, ob197, ob198, ob199, ob200,
+                 ob201, ob202, ob203, ob204, ob205, ob206, ob207, ob208, ob209, ob210,
+                 ob211, ob212, ob213, ob214, ob215, ob216, ob217, ob218, ob219, ob220,
+                 ob221, ob222, ob223, ob224, ob225, ob226)#, ob227, ob228, ob229, ob230)
 
 score=0
 y=str(score)
@@ -241,8 +314,6 @@ while not gameExit:
                     print("************************HELLO************************")
                     print("************************HELLO************************")
                     jump = True
-            if event.key == pygame.K_ESCAPE:
-                gameExit= True
             if event.key == pygame.K_RETURN:
                 gameExit= True
     if jump:
@@ -553,34 +624,158 @@ while not gameExit:
         ob144.left(40)
     if(timer > 119700):
         ob145.left(40)
-    if(timer > 120200):
+    if(timer > 122100):
         ob146.left(40)
-    if(timer > 121700):
+    if(timer > 122600):
         ob147.left(40)
-    if(timer > 123200):
+    if(timer > 124100):
         ob148.left(40)
-    if(timer > 123700):
+    if(timer > 124600):
         ob149.left(40)
-    if(timer > 125200):
+    if(timer > 126100):
         ob150.left(40)
-    if(timer > 125700):
+    if(timer > 126600):
         ob151.left(40)
-    if(timer > 127200):
+    if(timer > 128100):
         ob152.left(40)
-    if(timer > 127700):
+    if(timer > 128600):
         ob153.left(40)
-    if(timer > 129200):
+    if(timer > 130100):
         ob154.left(40)
-    if(timer > 129700):
+    if(timer > 130600):
         ob155.left(40)
-    if(timer > 131200):
+    if(timer > 132100):
         ob156.left(40)
-    if(timer > 131700):
+    if(timer > 132600):
         ob157.left(40)
-    if(timer > 133200):
+    if(timer > 134100):
         ob158.left(40)
-    # if(timer > 131700):
-    #     ob159.left(40)
+    if(timer > 134600):
+        ob159.left(40)
+    if(timer > 136100):
+        ob160.left(40)
+    if(timer > 136600):
+        ob161.left(40)
+    if(timer > 138100):
+        ob162.left(40)
+    if(timer > 138600):
+        ob163.left(40)
+    if(timer > 139600):
+        ob164.left(40)
+    if(timer > 140100):
+        ob165.left(40)
+    if(timer > 141600):
+        ob166.left(40)
+    if(timer > 142100):
+        ob167.left(40)
+    if(timer > 143600):
+        ob168.left(40)
+    if(timer > 144100):
+        ob169.left(40)
+    if(timer > 145600):
+        ob170.left(40)
+    if(timer > 146100):
+        ob171.left(40)
+    if(timer > 147600):
+        ob172.left(40)
+    if(timer > 148100):
+        ob173.left(40)
+    if(timer > 148600):
+        ob174.left(40)
+    if(timer > 150100):
+        ob175.left(40)
+    if(timer > 150600):
+        ob176.left(40)
+    if(timer > 152100):
+        ob177.left(40)
+    if(timer > 152600):
+        ob178.left(40)
+    if(timer > 169350):
+        ob179.left(40)
+    if(timer > 170350):
+        ob180.left(40)
+    if(timer > 171350):
+        ob181.left(40)
+    if(timer > 172350):
+        ob182.left(40)
+    if(timer > 173350):
+        ob183.left(40)
+    if(timer > 174350):
+        ob184.left(40)
+    if(timer > 175350):
+        ob185.left(40)
+    if(timer > 176350):
+        ob186.left(40)
+    if(timer > 177350):
+        ob187.left(40)
+    if(timer > 178350):
+        ob188.left(40)
+    if(timer > 179350):
+        ob189.left(40)
+    if(timer > 180350):
+        ob190.left(40)
+    if(timer > 181350):
+        ob191.left(40)
+    if(timer > 182350):
+        ob192.left(40)
+    if(timer > 183350):
+        ob193.left(40)
+    if(timer > 184350):
+        ob194.left(40)
+    if(timer > 185350):
+        ob195.left(40)
+    if(timer > 186350):
+        ob196.left(40)
+    if(timer > 187350):
+        ob197.left(40)
+    if(timer > 188350):
+        ob198.left(40)
+    if(timer > 189350):
+        ob199.left(40)
+    if(timer > 190350):
+        ob200.left(40)
+    if(timer > 191350):
+        ob201.left(40)
+    if(timer > 192350):
+        ob202.left(40)
+    if(timer > 192350):
+        ob203.left(40)
+    if(timer > 193350):
+        ob204.left(40)
+    if(timer > 194350):
+        ob205.left(40)
+    if(timer > 195350):
+        ob206.left(40)
+    if(timer > 196350):
+        ob207.left(40)
+    if(timer > 197350):
+        ob208.left(40)
+    if(timer > 198350):
+        ob209.left(40)
+    if(timer > 199350):
+        ob210.left(40)
+    if(timer > 200350):
+        ob211.left(40)
+    if(timer > 201350):
+        ob212.left(40)
+    if(timer > 202350):
+        ob213.left(40)
+    if(timer > 203350):
+        ob214.left(40)
+    if(timer > 204350):
+        ob215.left(40)
+    if(timer > 205350):
+        ob216.left(40)
+    if(timer > 206350):
+        ob217.left(40)
+    if(timer > 207350):
+        ob218.left(40)
+    if(timer > 208350):
+        ob219.left(40)
+    if(timer > 209350):
+        ob220.left(40)
+    if(timer > 210350):
+        ob221.left(40)
 
 
 
@@ -608,7 +803,7 @@ while not gameExit:
 
     if int(y)>int(b):
         b=y
-    if (timer>223200 and timer<233200):
+    if (timer>226500 and timer<236500):
         if b==y:
             first=myfont.render("NEW HIGH SCORE!", 1, (156,254,149))
             gameDisplay.blit(first, (50, 400))
@@ -624,6 +819,9 @@ while not gameExit:
             scorefile=open("hometownscores.txt", "w")
             scorefile.write(b)
             scorefile.close()
+    if (timer > 237000):
+        first=myfont.render("PRESS RETURN TO EXIT TO THE MAIN SCREEN", 1, (156,254,149))
+        gameDisplay.blit(first, (50, 400))
 
 pygame.quit() #unintiliazes pygames
 with open("menu.py") as f:

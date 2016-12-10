@@ -378,9 +378,6 @@ ob346 = sprites(cube, 4400, 580)
 ob347 = sprites(cube, 4400, 580)
 ob348 = sprites(cube, 4400, 580)
 ob349 = sprites(cube, 4400, 580)
-ob350 = sprites(cube, 4400, 580)
-ob351 = sprites(cube, 4400, 580)
-ob352 = sprites(cube, 4400, 580)
 
 
 pygame.display.set_caption("lets play!")
@@ -429,8 +426,7 @@ spritesgroup1.add(ob255, ob256, ob257, ob258, ob259, ob260, ob261, ob262, ob263,
                 ob315, ob316, ob317, ob318, ob319, ob320, ob321, ob322, ob323, ob324,
                 ob325, ob326, ob327, ob328, ob329, ob330, ob331, ob332, ob333, ob334,
                 ob335, ob336, ob337, ob338, ob339, ob340, ob341, ob342, ob343, ob344,
-                ob345, ob346, ob347, ob348, ob349, ob350, ob351, ob352)#, ob353, ob354,
-                #ob355, ob356, ob357, ob358, ob359, ob360, ob361, ob362, ob363, ob364)
+                ob345, ob346, ob347, ob348, ob349)
 
 score=0
 y=str(score)
