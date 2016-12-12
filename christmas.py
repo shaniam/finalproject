@@ -29,7 +29,7 @@ class christmasController:
         self.scorething=open("christmasscores.txt", "r") #reads the score file
         self.scoresentence=self.scorething.readline() #interprets the line list
         self.bhighscore=self.scoresentence.strip() #removes white space to obtain only the score
-        self.bhighscore=int(self.b) #turns the score into a string
+        self.bhighscore=int(self.bhighscore) #turns the score into a string
         self.scorething.close()
 
         #creates obstacle sprites
@@ -449,14 +449,14 @@ class christmasController:
                             self.jump = True
                     if event.key == pygame.K_RETURN: #exit
                         self.gameExit= True
-            if self.jump:
+            if self.jump: #if jump is true, change y value
                 self.player.rect.y -= 65
                 if self.player.rect.y <= 410:
                     ycoor = 500
                     self.jump = False
                     self.fall = True
 
-            if self.fall:
+            if self.fall: #if fall is true, change y value
                 self.player.rect.y += 65
                 if self.player.rect.y >= 544:
                     ycoor = 0
@@ -464,9 +464,9 @@ class christmasController:
             self.gameDisplay.blit(self.bg,[0,0])
             time.sleep(.05)
             self.player.pos()
-            self.spritesGroup.draw(self.gameDisplay)
+            self.spritesGroup.draw(self.gameDisplay) #draws the obstacles to the screen
             self.spritesGroup1.draw(self.gameDisplay)
-            self.ob.left(40)
+            self.ob.left(40) #releases obstacles at a certain tick
             if(self.timer > 5800):
                 self.ob1.left(40)
             if(self.timer > 10500):
@@ -491,31 +491,31 @@ class christmasController:
                 self.ob11.left(40)
             if(self.timer > 44600):
                 self.ob12.left(40)
-            if(self.timer > 45000): #1
+            if(self.timer > 45000):
                 self.ob13.left(40)
-            if(self.timer > 45400): #2
+            if(self.timer > 45400):
                 self.ob14.left(40)
-            if(self.timer > 45800): #3
+            if(self.timer > 45800):
                 self.ob15.left(40)
-            if(self.timer > 46200): #4
+            if(self.timer > 46200):
                 self.ob16.left(40)
-            if(self.timer > 46600): #5
+            if(self.timer > 46600):
                 self.ob17.left(40)
-            if(self.timer > 47000): #6
+            if(self.timer > 47000):
                 self.ob18.left(40)
-            if(self.timer > 47400): #7
+            if(self.timer > 47400):
                 self.ob19.left(40)
-            if(self.timer > 47800): #8
+            if(self.timer > 47800):
                 self.ob20.left(40)
-            if(self.timer > 48200): #9
+            if(self.timer > 48200):
                 self.ob21.left(40)
-            if(self.timer > 48600): #10
+            if(self.timer > 48600):
                 self.ob22.left(40)
-            if(self.timer > 49000): #11
+            if(self.timer > 49000):
                 self.ob23.left(40)
-            if(self.timer > 49400): #12
+            if(self.timer > 49400):
                 self.ob24.left(40)
-            if(self.timer > 49800): #13
+            if(self.timer > 49800):
                 self.ob25.left(40)
             if(self.timer > 50200):
                 self.ob26.left(40)
@@ -1166,54 +1166,54 @@ class christmasController:
 
 
 
-            self.blocks_hit_list = pygame.sprite.spritecollide(self.pointo, self.spritesGroup, True)
+            self.blocks_hit_list = pygame.sprite.spritecollide(self.pointo, self.spritesGroup, True) #creates collision groups
             self.player_blocks_hit_list =  pygame.sprite.spritecollide(self.player, self.spritesGroup, True)
             self.blocks_hit_list1 = pygame.sprite.spritecollide(self.pointo, self.spritesGroup1, True)
             self.player_blocks_hit_list1 =  pygame.sprite.spritecollide(self.player, self.spritesGroup1, True)
             pygame.sprite.spritecollide(self.player, self.spritesGroup, True)
-            if (self.blocks_hit_list != [] or self.blocks_hit_list1 != []):
+            if (self.blocks_hit_list != [] or self.blocks_hit_list1 != []): #adds 10 to your score if you jump over it
                 self.score+=10
                 self.scorestring=str(self.score)
-            if (self.player_blocks_hit_list != [] or self.player_blocks_hit_list1 != []):
+            if (self.player_blocks_hit_list != [] or self.player_blocks_hit_list1 != []): #subtracts 5 to your score if you don't jump over it
                 self.score-=5
                 self.scorestring=str(self.score)
             self.score1=self.myfont.render(self.scorestring, 1, (self.colors["black"]))
-            self.gameDisplay.blit(self.score1,(600, 50))
+            self.gameDisplay.blit(self.score1,(600, 50))#display score
             self.label = self.myfont.render("YOUR CURRENT SCORE IS:", 1, (self.colors["black"]))
-            self.gameDisplay.blit(self.label, (300, 50))
+            self.gameDisplay.blit(self.label, (300, 50))#displays "your current score is alongside the score"
             if (self.timer > 500) and (self.timer<4000):
-                self.firstinstruct=self.myfonter1.render("MARIAH CAREY - ALL I WANT FOR CHRISTMAS IS YOU ", 1, (self.colors["black"]))
-                self.gameDisplay.blit(self.firstinstruct, (50, 300))
+                self.firstinstruct=self.myfonter1.render("MARIAH CAREY - ALL I WANT FOR CHRISTMAS IS YOU ", 1, (self.colors["black"])) #creates the song label
+                self.gameDisplay.blit(self.firstinstruct, (50, 300)) #displays song label
             if (self.timer > 4100) and (self.timer<5100):
-                self.firstinstruct=self.myfonter.render("READY!", 1, (self.colors["black"]))
-                self.gameDisplay.blit(self.firstinstruct, (350, 300))
+                self.firstinstruct=self.myfonter.render("READY!", 1, (self.colors["black"])) #creates "Ready" label
+                self.gameDisplay.blit(self.firstinstruct, (350, 300)) #displays "ready"
             if (self.timer>5200 and self.timer<6200):
-                self.firstinstruct=self.myfonter.render(" SET! ", 1, (self.colors["black"]))
-                self.gameDisplay.blit(self.firstinstruct, (350, 300))
+                self.firstinstruct=self.myfonter.render(" SET! ", 1, (self.colors["black"])) #creates "set" label
+                self.gameDisplay.blit(self.firstinstruct, (350, 300)) #displays "set" after ready is displayed
             if (self.timer>6300 and self.timer<7300):
-                self.firstinstruct=self.myfonter.render(" GO! ", 1, (self.colors["black"]))
-                self.gameDisplay.blit(self.firstinstruct, (350, 300))
+                self.firstinstruct=self.myfonter.render(" GO! ", 1, (self.colors["black"])) #creates "Go" lable
+                self.gameDisplay.blit(self.firstinstruct, (350, 300)) #shows go after set is shown
 
             if int(self.scorestring)>int(self.bhighscore):
-                self.bhighscore=self.scorestring
+                self.bhighscore=self.scorestring #if current score is higher than the high score, the current score becomes the high score
             if (self.timer>230000 and self.timer<240000):
-                if self.bhighscore==self.scorestring:
+                if self.bhighscore==self.scorestring: #if the current score becomes the new high score display "NEW HIGH SCORE!"
                     self.first=self.myfont.render("NEW HIGH SCORE!", 1, (156,254,149))
                     self.gameDisplay.blit(self.first, (50, 400))
                     self.scorefile=open("christmasscores.txt", "w")
                     self.bhighscore=str(self.bhighscore)
-                    self.scorefile.write(self.bhighscore)
+                    self.scorefile.write(self.bhighscore) #updates the new highscore into the highscore file
                     self.scorefile.close()
                 else:
                     self.bhighscore=str(self.bhighscore)
                     self.highscores=("ALL TIME HIGH SCORE IS " + self.bhighscore)
                     self.first=self.myfont.render(self.highscores, 1, (156,254,149))
-                    self.gameDisplay.blit(self.first, (50, 400))
-                    self.scorefile=open("christmasscores.txt", "w")
+                    self.gameDisplay.blit(self.first, (50, 400)) #if a new high score isn't achieved the all time high score is shown
+                    self.scorefile=open("christmasscores.txt", "w") #writes the current highscore into the file
                     self.scorefile.write(self.bhighscore)
                     self.scorefile.close()
             if (self.timer > 241000):
-                    self.first=self.myfont.render("PRESS RETURN TO EXIT PROGRAM!", 1, (156,254,149))
+                    self.first=self.myfont.render("PRESS RETURN TO EXIT PROGRAM!", 1, (156,254,149)) #exits prgm
                     self.gameDisplay.blit(self.first, (50, 400))
 
             pygame.display.update()

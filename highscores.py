@@ -33,7 +33,7 @@ class highscoreController:
                 if event.type==pygame.QUIT:
                     self.gameExit=True
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
+                    if event.key == pygame.K_RETURN:
                         self.gameExit= True
             self.gameDisplay.blit(self.bg,[0,0])
             self.m83scoreline=self.myfont.render(self.m83score, 1, (100, 123, 177))

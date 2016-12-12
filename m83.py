@@ -195,13 +195,11 @@ class mController:
         while not self.gameExit:
             self.clock.tick(40)
             self.timer = pygame.time.get_ticks()
-            print(self.timer)
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
                     self.gameExit=True
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
-                        print("HERE!!!!!")
                         if not self.fall:
                             self.jump = True
                     if event.key == pygame.K_RETURN:
@@ -221,7 +219,6 @@ class mController:
 
             pygame.display.update()
             self.gameDisplay.blit(self.bg,[0,0])
-            #self.gameDisplay.fill(colors["pink"])
             time.sleep(.05)
             self.player.pos()
             self.spritesgroup.draw(self.gameDisplay)

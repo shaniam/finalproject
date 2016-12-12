@@ -1,0 +1,189 @@
+﻿Group Members: Shania Mahmud, Ryan Sharpelletti, Evan Carroll, Lesly Canales
+Project Name: Cubed
+Course Number: CS110
+Semester: Fall 2016
+https://github.com/rsharpie/finalproject
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+USER DOCUMENTATION
+
+
+CONTROLS
+
+
+W: Walk user forward (in main menu)
+A: Turn user left (in main menu)
+D: Turn user right (in main menu)
+SPACE BAR: Makes user jump (in game)
+ESC: Quit program (in main menu and in game)
+
+
+OBJECTIVE
+
+
+Jump over incoming obstacles to the beat of music! Choose from one of three different levels (easy = tepee, medium = house, hard = castle), and try to beat your high score! High scores per song can be found at the cupcake house in the main menu.
+
+
+CREDITS
+
+
+Libraries used to create game: Panda 3D and Pygame
+World Model: Disney’s ToonTown Online
+Character: Panda 3D’s “Roaming-Ralph” example
+Easy Level Song: M83’s “Midnight City”
+Medium Level Song: Twenty One Pilot’s “Hometown”
+Hard Level Song: Mariah Carey’s “All I Want For Christmas Is You”
+
+
+
+
+A boy represents the main player that has the ability to explore three different 3D buildings. Each building has the title of a song (.ogg), which the main player can select to choose a level based on difficulty. The controls to move the block are w,a,d to move the block into the buildings. Afterwards it switches to another screen which has a 2D interface.There will also be a 4th additional building titled the Hall of Fame, which will list the highest scores along with the player’s names. 
+
+
+ The levels leads to a moving side-scroller where the main player needs to avoid obstacles based on the beat/rhythmic pattern of the song. The level ends when the song ends, and at the end the high score is shown (the user will be notified if they get a new high score!). The scores are based on the number of obstacles avoided and the amount of points collected throughout the game.
+
+
+ 
+III. Top-Level Design
+* A top-level design of your project including classes and functions
+   * This may change as we go, but should be kept updated. We will be checking it periodically. 
+   * Definite Functions: A function that has music playing depending on the area you are in, a function that loops through the music,  a function that determines intitial position of sprites, a function that moves sprites on the x axis. 
+   * Modules: pygame, blender, panda3d, winsound, audioop, wave, more TBA
+IV. Tasks and Responsibilities
+Lesly Canales:
+1. Helped install Panda3D engine
+2. Found out how to convert models to/from Maya/Panda3D
+3. Made file paths for model textures relative (so that they could be accessed from any computer)
+4. Binded keys to different actions for character movement
+5. Imported five different models into one world and created ground texture
+6. Handled getting the character to walk around with correct animations
+   1. Updated movement with each tick
+   2. Moved character to a specified distance with each tick depending on if key was pressed
+   3. Decided whether the character should play the walking or running animation
+1. Handled camera which points at an invisible floater two units above the character to follow character around, which gets closer if the user runs too far away
+2. Created invisible lines within the world to act as triggers
+   1. When the user crosses the invisible line, a certain event occurs
+   2. Created lines in front of each building to trigger each level (or high score room)
+   3. Created lines around the buildings so that if the user wanders too far out, they get spawned back to the origin coordinates
+1. Integrated Panda3D and Pygame (created code that searches for a specified file name and opens it, and compiles and executes the code)
+2. Debugged Panda3D portion of the project
+
+
+Ryan Sharpelletti:
+1. Researched which engine to use and helped install Panda3D engine
+2. Extracted models with their textures from game to use for main menu & picked out which models to use
+3. Panda3D:
+   1. Created Panda3D window
+   2. Loaded models and characters (and their animations) into window
+   3. Printed title and instructions to the screen (with font other than default)
+   4. Loaded music and made it so that enables and disables
+   5. Binded keys for actor to move around
+   6. Escape is used to quit
+   7. Integrated Panda3D and Pygame (moved imports into if statements; stopped menu music from playing)
+   8. Organized code into a single class
+   9. Debugged camera 
+1. Pygame:
+   1. Got user sprite to jump up and down properly
+   2. Loaded obstacles onto screen
+   3. Made obstacles move to the left
+   4. Calculated the beat for every single object (for all 3 songs)
+   5. Merged the sprite class from one class into two
+   6. Escape is used to quit
+   7. Had instructions appear to screen at specified time
+
+
+Shania Mahmud:
+1. Researched Pygame library
+2. Picked out all of the graphics (fonts, user image, obstacle image, background image) for Pygame portion of the project
+3. Designed and created entire window for high score room
+   1. Prints high scores from database to window
+1. Created classes for loading music and sprites in Pygame portion of the project
+2. Created Pygame window
+3. Created controller class for all three of the levels
+4. Created game loop
+5. Loaded all images and fonts 
+6. Grouped sprites
+7. Printed instructions and high score to screen
+8. Made collision groups
+   1. If the obstacle collides into user, take away 5 points
+   2. If user successfully jumps over obstacle and obstacle crashes into invisible sprite, add 10 points
+1. Made live tracker of score at the top of the screen
+2. Created three separate databases to keep track of high scores for each song, and had it print out whether or not the user beat the high score at a specified time at the end of each level
+3. In charge of aethetics
+
+
+Evan Carroll:
+1. Tested high scores
+
+
+
+
+V. Testing
+* Describe your testing strategy for each unit of your project.
+   * Had random students play with our game
+   * Students ran far in the 3d menu, causing us to implement features to reposition character to center it runs to far
+   * Had students press spacebar repeatedly to see if the character would still jump correctly
+   * Had students play over and over and see if the highscores are updated correctly (not updating a false update)

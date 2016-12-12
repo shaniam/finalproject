@@ -300,7 +300,6 @@ class hometownController:
         while not self.gameExit:
             self.clock.tick(40)
             self.timer = pygame.time.get_ticks()
-            print(self.timer)
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
                     self.gameExit=True

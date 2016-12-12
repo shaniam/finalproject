@@ -2,6 +2,7 @@ from direct.showbase.ShowBase import ShowBase
 from panda3d.core import TextNode, PandaNode, NodePath, GeomNode, LineSegs
 from direct.gui.OnscreenText import OnscreenText
 from direct.actor.Actor import Actor
+#from hometown import christmasController
 import random
 import sys
 import os
